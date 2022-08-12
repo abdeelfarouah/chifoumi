@@ -5,20 +5,6 @@ Rock Paper Scissors is a zero sum game that is usually played by two people usin
 
 What are the shapes of Rock Paper Scissors?
 
-ROCK
-
-The rock is when you place your hand into the form of a simple fist.
-
-
-PAPER
-
-The paper is when you place your hand in an outstretched position.
-
-
-SCISSORS
-
-This is when you hold your fist with your index and middle finger pointing outwards in a V shape.
-
 Why is Rock Paper Scissors played?
 This game is played by children and adults and is popular all over the world. Apart from being a game played to pass time, the game is usually played in situations where something has to be chosen. It is similar in that way to other games like flipping the coin, throwing dice or drawing straws. There is no room for cheating or for knowing what the other person is going to do so the results are usually very satisfying with no room for fighting or error.
 
