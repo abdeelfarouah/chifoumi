@@ -1,13 +1,28 @@
+import '/styles.scss';
+import './src/components/Chifoumi';
+
+
 let wins = 0; let loses = 0;
 var choices = ["papier", "caillou","ciseaux"];
 var gameStatus = document.getElementById("gameStatus");
 var gameScore = document.getElementById("gameScore");
-const buttonPaper = document.getElementById("paper");
+const Paper = document.getElementById("paper");
 const buttonScissors = document.getElementById("scissors");
-const buttonRock = document.getElementById("scissors");
+const buttonRock = document.getElementById("rock");
 
+ 
 
+buttonPaper.addEventListener('click', event => {
+  console.log(clickPaper.target.value)
+})
+buttonScissors.addEventListener('click', event => {
+  console.log(clickScissors.target.value)
+})
+document.addEventListener('click', event => {
+  console.log(clickRock.target.value)
+})
 
+  bot.runGame();
 function runGame(userChoice) {
     const computerChoice = choices[Math.floor(Math.random() * choices.length)];
 
@@ -32,18 +47,19 @@ function runGame(userChoice) {
         break;
   }
  
-  const buttonRock = clickRock('rock');
-  const buttonPaper = clickPaper('paper')
-  const buttonScissors = runGame('rock')
 
-buttonRock.addEventListener("click", clickRock("rock")) 
-buttonPaper.addEventListener("click" ,clickPaper("paper"));
-buttonScissors.addEventListener("click", clickScissors("scissors"));
 
+  clickRock.getElementByTag('button').addEventListener('click',clickRock);
+ clickPaper.getElementByTag('button').addEventListener('click',clickPaper);
+clickScissors.addEventListener("click", clickScissors("scissors"));
+
+const Rock = runGame('rock');
+  const buttonPaper = runGame('paper');
+  const buttonScissors = runGame('rock');
   gameScore.innerHTML = `ME: ${wins} | COMPUTER: ${loses}`;
 }
 
-
+export default App;
 
 
 

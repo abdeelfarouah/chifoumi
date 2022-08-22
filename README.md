@@ -19,7 +19,6 @@ The Hand Signals
 In order to ensure fair play, the game signals have been agreed upon to ensure the uniformity of delivery every single time. This ensures that there will be no room for error and these signals have been approved for all types of recreational and professional play.
 The proper opening move will impact the overall success of the game. This means that special attention should be given to the way you move your hand initially before you attempt to make any signal so that other players are not aware of your intention. When you succeed to do so, you ensure that other players will not be able to make a signal that beats yours, at least not on purpose.
 
-
 THE ROCK
 The rock is internationally recognized by a closed fist where the thumb is not concealed. It is also one of the most popular opening moves and this is why it is considered to be one of the most popular hand signals. Most players will view using the rock as an opening move to be somehow aggressive but would still use it because it is easy. The rock will beat scissors every time but will be beaten by paper.
 
@@ -31,3 +30,4 @@ Scissors are thrown in the same way as rock where the hand is clenched into a fi
 
 It is very important to conceal your move and to surprise your opponent if you want to make sure that you will win this game.
 
+#
