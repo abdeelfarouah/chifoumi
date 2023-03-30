@@ -21,18 +21,31 @@ function getComputerChoice() {
 
 // Fonction de comparaison des choix et mise à jour du score
 
-function updateScore() {
+function updateScore(userChoice, computerChoice, userScore, computerScore) {
+  const ROCK = 'rock';
+  const PAPER = 'paper';
+  const SCISSORS = 'scissors';
+  
+  let resultText;
+  
   if (userChoice === computerChoice) {
     resultText = "It's a tie!";
-  } else if ((userChoice === 'rock' && computerChoice === 'scissors') ||
-             (userChoice === 'paper' && computerChoice === 'rock') ||
-             (userChoice === 'scissors' && computerChoice === 'paper')) {
-    userScoreValue++;
+  } else if ((userChoice === ROCK && computerChoice === SCISSORS) ||
+             (userChoice === PAPER && computerChoice === ROCK) ||
+             (userChoice === SCISSORS && computerChoice === PAPER)) {
+    userScore++;
     resultText = "You win!";
   } else {
-    computerScoreValue++;
+    computerScore++;
     resultText = "You lose!";
   }
+  
+  return {
+    userScore,
+    computerScore,
+    resultText
+  };
+}
 
   userScore.textContent = userScoreValue;
   computerScore.textContent = computerScoreValue;
