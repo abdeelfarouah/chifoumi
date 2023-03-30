@@ -76,7 +76,52 @@ function play() {
       updateScore();
       result.textContent = resultText;
     });
-  });
+  });play();
 }
+function showScores(userScore, computerScore, resultText) {
+  const table = document.createElement('table');
+  const thead = document.createElement('thead');
+  const tbody = document.createElement('tbody');
+  const trHead = document.createElement('tr');
+  const thMe = document.createElement('th');
+  const thComputer = document.createElement('th');
+  const thResult = document.createElement('th');
+  
+  thMe.textContent = 'ME';
+  thComputer.textContent = 'COMPUTER';
+  thResult.textContent = 'RESULT';
+  
+  trHead.appendChild(thMe);
+  trHead.appendChild(thComputer);
+  trHead.appendChild(thResult);
+  
+  thead.appendChild(trHead);
+  table.appendChild(thead);
+  table.appendChild(tbody);
+  
+  const trBody = document.createElement('tr');
+  const tdUserScore = document.createElement('td');
+  const tdComputerScore = document.createElement('td');
+  const tdResultText = document.createElement('td');
+  
+  tdUserScore.textContent = userScore;
+  tdComputerScore.textContent = computerScore;
+  tdResultText.textContent = resultText;
+  
+  trBody.appendChild(tdUserScore);
+  trBody.appendChild(tdComputerScore);
+  trBody.appendChild(tdResultText);
+  
+  tbody.appendChild(trBody);
+  
+  const popup = window.open('', 'popup', 'width=300,height=200');
+  popup.document.body.appendChild(table);
+}
+const scores = updateScore(userChoice, computerChoice, userScoreValue, computerScoreValue);
+userScoreValue = scores.userScore;
+computerScoreValue = scores.computerScore;
+resultText = scores.resultText;
 
-play();
+showScores(userScoreValue, computerScoreValue, resultText);
+
+
