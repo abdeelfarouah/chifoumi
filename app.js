@@ -1,54 +1,69 @@
-// Récupérer les éléments de l'interface utilisateur
-const rockBtn = document.getElementById("rock");
-const paperBtn = document.getElementById("paper");
-const scissorsBtn = document.getElementById("scissors");
-const resultDiv = document.getElementById("result");
-const scoresTable = document.getElementById("scores");
+// Définition des variables
 
-// Initialiser les scores des joueurs
-let userScore = 0;
-let computerScore = 0;
+const choices = document.querySelectorAll('.choices img');
+const userScore = document.getElementById('user-score');
+const computerScore = document.getElementById('computer-score');
+const result = document.getElementById('result');
+const scoresTable = document.getElementById('scores');
+let userChoice;
+let computerChoice;
+let userScoreValue = 0;
+let computerScoreValue = 0;
+let resultText = "";
 
-// Ajouter des écouteurs d'événements sur les boutons de choix
-rockBtn.addEventListener("click", function() {
-  playRound("rock");
-});
+// Fonction de choix aléatoire de l'ordinateur
 
-paperBtn.addEventListener("click", function() {
-  playRound("paper");
-});
-
-scissorsBtn.addEventListener("click", function() {
-  playRound("scissors");
-});
-
-// Fonction pour jouer un tour de jeu
-function playRound(playerSelection) {
-  // Générer une sélection aléatoire pour l'ordinateur
-  const options = ["rock", "paper", "scissors"];
-  const computerSelection = options[Math.floor(Math.random() * 3)];
-  
-  // Vérifier qui a gagné ou s'il y a une égalité
-  if (playerSelection === computerSelection) {
-    resultDiv.textContent = "Égalité!";
-  } else if (playerSelection === "rock" && computerSelection === "scissors" ||
-             playerSelection === "paper" && computerSelection === "rock" ||
-             playerSelection === "scissors" && computerSelection === "paper") {
-    userScore++;
-    resultDiv.textContent = "Vous avez gagné!";
-  } else {
-    computerScore++;
-    resultDiv.textContent = "Vous avez perdu!";
-  }
-  
-  // Mettre à jour les scores et le tableau des résultats
-  document.getElementById("user-score").textContent = userScore;
-  document.getElementById("computer-score").textContent = computerScore;
-  const newRow = scoresTable.insertRow(-1);
-  const userCell = newRow.insertCell(0);
-  const computerCell = newRow.insertCell(1);
-  const resultCell = newRow.insertCell(2);
-  userCell.textContent = userScore;
-  computerCell.textContent = computerScore;
-  resultCell.textContent = resultDiv.textContent;
+function getComputerChoice() {
+  const choices = ['rock', 'paper', 'scissors'];
+  const randomIndex = Math.floor(Math.random() * 3);
+  return choices[randomIndex];
 }
+
+// Fonction de comparaison des choix et mise à jour du score
+
+function updateScore() {
+  if (userChoice === computerChoice) {
+    resultText = "It's a tie!";
+  } else if ((userChoice === 'rock' && computerChoice === 'scissors') ||
+             (userChoice === 'paper' && computerChoice === 'rock') ||
+             (userChoice === 'scissors' && computerChoice === 'paper')) {
+    userScoreValue++;
+    resultText = "You win!";
+  } else {
+    computerScoreValue++;
+    resultText = "You lose!";
+  }
+
+  userScore.textContent = userScoreValue;
+  computerScore.textContent = computerScoreValue;
+
+  // Ajout d'une ligne au tableau des scores
+
+  const row = scoresTable.insertRow(-1);
+  const userCell = row.insertCell(0);
+  const computerCell = row.insertCell(1);
+  const resultCell = row.insertCell(2);
+  userCell.textContent = userChoice;
+  computerCell.textContent = computerChoice;
+  resultCell.textContent = resultText;
+}
+
+// Fonction principale de jeu
+
+function play() {
+  computerChoice = getComputerChoice();
+
+  // Détection du choix de l'utilisateur et mise à jour de l'image
+
+  choices.forEach(choice => {
+    choice.addEventListener('click', function() {
+      userChoice = choice.id;
+      this.classList.add('selected');
+      setTimeout(() => this.classList.remove('selected'), 500);
+      updateScore();
+      result.textContent = resultText;
+    });
+  });
+}
+
+play();
