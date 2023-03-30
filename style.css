@@ -1,85 +1,78 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo:wght@900&display=swap');
-*
-{
-    margin: 1;
-    padding: 0;
-    box-sizing: border-box;
+body {
+  background-color: #F7D48A;
+  font-family: Arial, sans-serif;
 }
 
-html {
-    background-color: rgb(199, 208, 214);
-    color: salmon;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-align: center;
-}
 h1 {
-    padding: 2.5rem 1rem;
-    font-size: 3.5rem;
-    justify-content: space-around;
+  text-align: center;
+  font-size: 3rem;
+  margin: 2rem;
 }
- .pulse {
-	z-index: -1;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	max-width: 30rem;} 
-h2 {
-    position: relative;
-  font-family: 'Exo';
-  font-size: 5em;
-  margin: 0;
-  transform: skew(-15deg);
-  letter-spacing: 0.03em;
-  
-background-image: linear-gradient(#032d50 25%, #8313e7 55%, #ff61af 75%);
-  background-clip: text;
-  z-index: 0;
-	background-color: blue;
-	align-items: center;
-    justify-content: space-around;
-	min-height: 100vh;
 
+.choices {
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
 }
-div.choices{
-    display: flex;
-    justify-content: space-around;
 
+.choices img {
+  width: 10rem;
+  height: 10rem;
+  margin: 1rem;
+  border: 5px solid #000000;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
 }
-div:hover:after {
-    content: "YOU WIN" || "YOU LOOSE";
-    position: absolute;
-    left: 0; right: 0; bottom: 6vh;
-    color: #1C1C1C;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.15px;
-    font: 700 12px/14px Tahoma, sans-serif;
-   
-  }
-  
-img:hover
-{
-    transform: scale(120%);
-    cursor: pointer;
-}
-.score-board{
-    margin: 20px auto;
-    border: 9px solid white};
 
-#user-label {
-  position: absolute;
-  top: 39px;
+.choices img:hover {
+  transform: scale(1.1);
 }
-  
-@keyframes pulse {
-	
-	25% {
-		opacity: 0.4;
-	}
-	
-	100% {
-		transform: scale(1);
-	}
-	
+
+.score-board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+  font-size: 2rem;
+}
+
+#user-label, #computer-label {
+  margin: 0 2rem;
+}
+
+#result {
+  text-align: center;
+  font-size: 2rem;
+  margin: 2rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: 0 auto;
+}
+
+th {
+  background-color: #000000;
+  color: #FFFFFF;
+  font-size: 2rem;
+  padding: 1rem;
+  text-align: center;
+  border: 2px solid #FFFFFF;
+}
+
+td {
+  font-size: 2rem;
+  padding: 1rem;
+  text-align: center;
+  border: 2px solid #000000;
+}
+
+tr:nth-child(even) {
+  background-color: #F2E3C3;
+}
+
+tr:nth-child(odd) {
+  background-color: #F7D48A;
 }
