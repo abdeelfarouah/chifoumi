@@ -2,6 +2,8 @@
 body {
   font-family: 'Open Sans', sans-serif;
   background-color: #f2f2f2;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .container {
@@ -37,8 +39,8 @@ header img {
 }
 
 .choices img {
-  margin: 0 10px;
-  cursor: pointer;
+  margin-left: 50px;
+  margin-right: 50px;  cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }
 
