@@ -1,36 +1,28 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
+<html>
+  <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Chifoumi</title>
-</head>
-<body>
-    <h1>CHIFOUMI</h1>
-
-    <div class="choices">
-      <img src="./rock.jpg" alt="Pierre" id="rock">
-      <img src="./paper.png" alt="Papier" id="paper">
-      <img src="./scissors.png" alt="Ciseaux" id="scissors">
-    </div>
-
-    <div class="score-board">
-      <div id="user-label">ME: <span id="user-score">0</span></div>
-      <div id="computer-label">COMPUTER: <span id="computer-score">0</span></div>
-    </div>
-
-    <div id="result"></div>
-
-    <table id="scores">
-      <thead>
-        <tr>
-          <th>ME</th>
-          <th>COMPUTER</th>
-          <th>RESULT</th>
-        </tr>
-      </thead>
-		</body>
-	<script src="app.js"></script>
-	</html>
+    <title>SHI FU MI</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <header>
+      <h1>Rock Paper Scissors</h1>
+    </header>
+    <main>
+    <p>Choose your weapon:</p>
+      </div>
+      <div class="choices">
+        <img id="rock" src="rock.jpg">
+        <img id="paper" src="paper.png">
+        <img id="scissors" src="scissors.png">
+      </div>
+      <p id="result"></p>
+      <div>
+        <p>Player score: <span id="player-score">0</span></p>
+        <p>Computer score: <span id="computer-score">0</span></p>
+      </div>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html
