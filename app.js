@@ -1,6 +1,5 @@
 // Définition des constantes
-const playerScoreElement = document.getElementById('player-score');
-const computerScoreElement = document.getElementById('computer-score');
+
 const resultMsgElement = document.getElementById('result');
 const choices = document.querySelectorAll('.choices img');
 const resetBtn = document.querySelector("#reset");
@@ -67,7 +66,6 @@ function getResult(playerChoice, computerChoice) {
     return "Computer wins!";
   }
 }
-
   // Définir les éléments HTML pour afficher les scores
     var playerScoreElement = document.getElementById("playerScore");
     var computerScoreElement = document.getElementById("computerScore");
