@@ -1,27 +1,12 @@
-// Définition des constantes
-
-const resultMsgElement = document.getElementById('result');
-const choices = document.querySelectorAll('.choices img');
-const resetBtn = document.querySelector("#reset");
-
-// Définition des variables
-var playerScore = 0;
-var computerScore = 0;
+// Définir la variable pour le score maximum
+var maxScore = 10;
 
 // Ajouter un écouteur d'événement à chaque bouton
 choices.forEach(choice => {
   choice.addEventListener('click', handleChoiceClick);
 });
 
-// Ajouter un écouteur d'événement au bouton de réinitialisation
-resetBtn.addEventListener("click", () => {
-  playerScore = 0;
-  computerScore = 0;
-  updateScores();
-  resultMsgElement.textContent = "";
-});
-
-// Définir la fonction pour gérer les clics sur les images  
+// Définir la fonction pour gérer les clics sur les images
 function handleChoiceClick(event) {
   // Récupérer l'ID de l'image cliquée pour déterminer le choix du joueur
   const playerChoice = event.target.id;
@@ -44,40 +29,61 @@ function handleChoiceClick(event) {
 
   // Mettre à jour les scores affichés dans la page HTML
   updateScores();
-}
 
-// Définir une fonction pour générer le choix aléatoire de l'ordinateur
-function getComputerChoice() {
-  const choices = ["rock", "paper", "scissors"];
-  return choices[Math.floor(Math.random() * 3)];
-}
+  // Vérifier si un joueur a atteint le score maximum
+  if (playerScore === maxScore || computerScore === maxScore) {
+    // Afficher le message de fin de jeu
+    resultMsgElement.textContent = `${playerScore === maxScore ? 'You' : 'Computer'} won!`;
 
-// Définir une fonction pour déterminer le résultat du jeu
-function getResult(playerChoice, computerChoice) {
-  if (playerChoice === computerChoice) {
-    return alert "Tie!";
-  } else if (
-    (playerChoice === "rock" && computerChoice === "scissors") ||
-    (playerChoice === "paper" && computerChoice === "rock") ||
-    (playerChoice === "scissors" && computerChoice === "paper")
-  ) {
-    return alert"You win!";
-  } else {
-    return alert"Computer wins!";
+    // Désactiver les boutons pour arrêter le jeu
+    choices.forEach(choice => {
+      choice.removeEventListener('click', handleChoiceClick);
+      choice.style.pointerEvents = 'none';
+    });
   }
 }
-  // Définir les éléments HTML pour afficher les scores
-    var playerScoreElement = document.getElementById("playerScore");
-    var computerScoreElement = document.getElementById("computerScore");
 
-    // Définir une fonction pour mettre à jour les scores affichés dans la page HTML
-    function updateScores() {
-      playerScore++;
-      computerScore++;
-      playerScoreElement.textContent = playerScore;
-      computerScoreElement.textContent = computerScore;
+// Ajouter un écouteur d'événement au bouton de réinitialisation
+resetBtn.addEventListener("click", () => {
+  playerScore = 0;
+  computerScore = 0;
+  updateScores();
+  resultMsgElement.textContent = "";
 
-      // Afficher une fenêtre contextuelle pour afficher le score
-      window.alert("Le score est Joueur: " + playerScore + " Ordinateur: " + computerScore);
-    }
-}
+  // Réactiver les boutons pour recommencer le jeu
+  choices.forEach(choice => {
+    choice.addEventListener('click', handleChoiceClick);
+    choice.style.pointerEvents = 'auto';
+  });
+});
+// Ajouter un écouteur d'événement à chaque bouton
+choices.forEach(choice => {
+  choice.addEventListener('click', handleChoiceClick);
+
+  // Ajouter l'animation pour faire pivoter l'image
+  anime({
+    targets: choice,
+    rotate: '1turn',
+    duration: 500,
+    autoplay: false
+  });
+});
+
+// Définir la fonction pour gérer les clics sur les images
+function handleChoiceClick(event) {
+  // Récupérer l'ID de l'image cliquée pour déterminer le choix du joueur
+  const playerChoice = event.target.id;
+
+  // Faire pivoter l'image choisie
+  anime({
+    targets: event.target,
+    rotate: '1turn',
+    duration: 500,
+    autoplay: true
+  });
+
+  // Déterminer le choix de l'ordinateur
+  const computerChoice = getComputerChoice();
+
+  // Déterminer le résultat du jeu
+  const result = getResult(playerChoice, computerChoice);
