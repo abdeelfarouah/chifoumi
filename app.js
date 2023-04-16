@@ -55,15 +55,15 @@ function getComputerChoice() {
 // Définir une fonction pour déterminer le résultat du jeu
 function getResult(playerChoice, computerChoice) {
   if (playerChoice === computerChoice) {
-    return "Tie!";
+    return alert "Tie!";
   } else if (
     (playerChoice === "rock" && computerChoice === "scissors") ||
     (playerChoice === "paper" && computerChoice === "rock") ||
     (playerChoice === "scissors" && computerChoice === "paper")
   ) {
-    return "You win!";
+    return alert"You win!";
   } else {
-    return "Computer wins!";
+    return alert"Computer wins!";
   }
 }
   // Définir les éléments HTML pour afficher les scores
