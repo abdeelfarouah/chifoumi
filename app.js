@@ -6,8 +6,8 @@ const choices = document.querySelectorAll('.choices img');
 const resetBtn = document.querySelector("#reset");
 
 // Définition des variables
-let playerScore = 0;
-let computerScore = 0;
+var playerScore = 0;
+var computerScore = 0;
 
 // Ajouter un écouteur d'événement à chaque bouton
 choices.forEach(choice => {
@@ -68,8 +68,18 @@ function getResult(playerChoice, computerChoice) {
   }
 }
 
-// Définir une fonction pour mettre à jour les scores affichés dans la page HTML
-function updateScores() {
-  playerScoreElement.textContent = playerScore;
-  computerScoreElement.textContent = computerScore;
+  // Définir les éléments HTML pour afficher les scores
+    var playerScoreElement = document.getElementById("playerScore");
+    var computerScoreElement = document.getElementById("computerScore");
+
+    // Définir une fonction pour mettre à jour les scores affichés dans la page HTML
+    function updateScores() {
+      playerScore++;
+      computerScore++;
+      playerScoreElement.textContent = playerScore;
+      computerScoreElement.textContent = computerScore;
+
+      // Afficher une fenêtre contextuelle pour afficher le score
+      window.alert("Le score est Joueur: " + playerScore + " Ordinateur: " + computerScore);
+    }
 }
