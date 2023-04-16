@@ -33,4 +33,10 @@ function handleChoiceClick(event) {
   resultMsgElement.textContent = `You chose ${playerChoice}, computer chose ${computerChoice}. ${result}`;
 
   // Mettre à jour les scores affichés dans la page HTML
-  updateScores();
+  function updateScores() {
+  const playerScoreElement = document.getElementById('playerScore');
+  const computerScoreElement = document.getElementById('computerScore');
+
+  playerScoreElement.textContent = playerScore;
+  computerScoreElement.textContent = computerScore;
+}
