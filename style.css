@@ -38,13 +38,13 @@ main {
   margin: 0 20px;
   cursor: pointer;
   border-radius: 50%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 }
 
 .choices img:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
 }
 
 #result {
