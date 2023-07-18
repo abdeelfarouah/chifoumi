@@ -1,4 +1,4 @@
-/* Styles de base applicables à tous les écrans */
+/* Base styles applicable to all screens */
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #f2f2f2;
@@ -10,7 +10,7 @@ header {
   background-color: #ffb900;
   color: #fff;
   text-align: center;
-  padding: 20px;
+  padding: 2rem;
 }
 
 h1 {
@@ -23,56 +23,56 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 2rem;
+  padding: 0 1rem;
 }
 
 .choices {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 1.5rem;
 }
 
 .choices img {
-  width: 100px;
-  height: 100px;
-  margin: 0 20px;
+  width: 8rem;
+  height: 8rem;
+  margin: 0 1rem;
   cursor: pointer;
   border-radius: 50%;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 }
 
 .choices img:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+  transform: translateY(-0.3rem);
+  box-shadow: 0 0.6rem 0.8rem rgba(0, 0, 0, 0.4);
 }
 
 #result {
   font-size: 3rem;
   font-weight: bold;
-  margin-top: 20px;
+  margin-top: 2rem;
   text-align: center;
   color: #333;
 }
 
 #score {
-  margin-top: 30px;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 #score h1 {
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
   font-size: 1.5rem;
   font-weight: bold;
   color: #333;
 }
 
 #score p {
-  margin: 5px 0;
-  padding: 0;
+  margin: 0.5rem 0;
   font-size: 1.2rem;
   font-weight: bold;
   color: #333;
@@ -80,10 +80,10 @@ main {
   text-transform: uppercase;
 }
 
-/* Styles spécifiques aux écrans de petite taille (mobiles) */
+/* Styles specific to small screens (mobile) */
 @media (max-width: 767px) {
   header {
-    padding: 10px;
+    padding: 1rem;
   }
   
   h1 {
@@ -95,9 +95,9 @@ main {
   }
   
   .choices img {
-    width: 80px;
-    height: 80px;
-    margin: 10px;
+    width: 6rem;
+    height: 6rem;
+    margin: 0.5rem;
   }
   
   #result {
@@ -107,6 +107,7 @@ main {
   #score h1 {
     font-size: 1.2rem;
   }
+  
   #score p {
     font-size: 1rem;
   }
