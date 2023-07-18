@@ -1,7 +1,7 @@
 /* Base styles applicable to all screens */
 body {
   font-family: 'Poppins', sans-serif;
-  background: rgb(121,9,56);
+  background-color: rgb(121,9,56);
 background: -moz-radial-gradient(circle, rgba(121,9,56,1) 40%, rgba(0,36,8,1) 61%, rgba(0,212,255,1) 100%);
 background: -webkit-radial-gradient(circle, rgba(121,9,56,1) 40%, rgba(0,36,8,1) 61%, rgba(0,212,255,1) 100%);
 background: radial-gradient(circle, rgba(121,9,56,1) 40%, rgba(0,36,8,1) 61%, rgba(0,212,255,1) 100%);
@@ -11,7 +11,6 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#790938",endCo
 }
 
 header {
-  background-color: #ffb900;
   color: #fff;
   text-align: center;
   padding: 2rem;
