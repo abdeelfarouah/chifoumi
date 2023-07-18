@@ -1,3 +1,4 @@
+/* Styles de base applicables à tous les écrans */
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #f2f2f2;
@@ -79,28 +80,26 @@ main {
   text-transform: uppercase;
 }
 
-/* Media queries pour la réactivité */
-
-/* Par exemple, lorsque la largeur de l'écran est inférieure ou égale à 600px */
-@media (max-width: 600px) {
+/* Styles spécifiques aux écrans de petite taille (mobiles) */
+@media (max-width: 767px) {
   header {
     padding: 10px;
   }
-
+  
   h1 {
     font-size: 1.5rem;
   }
-
+  
   .choices {
     flex-wrap: wrap;
   }
-
+  
   .choices img {
     width: 80px;
     height: 80px;
     margin: 10px;
   }
-
+  
   #result {
     font-size: 2rem;
   }
@@ -108,8 +107,8 @@ main {
   #score h1 {
     font-size: 1.2rem;
   }
-
   #score p {
     font-size: 1rem;
   }
 }
+
