@@ -6,11 +6,11 @@ body {
 }
 
 header {
-   background-color: rgb(121,9,56);
-background: -moz-radial-gradient(circle, rgba(121,9,56,1) 40%, rgba(0,36,8,1) 61%, rgba(0,212,255,1) 100%);
-background: -webkit-radial-gradient(circle, rgba(121,9,56,1) 40%, rgba(0,36,8,1) 61%, rgba(0,212,255,1) 100%);
-background: radial-gradient(circle, rgba(121,9,56,1) 40%, rgba(0,36,8,1) 61%, rgba(0,212,255,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#790938",endColorstr="#00d4ff",GradientType=1);
+background-color: rgb(34,193,195);
+background: -moz-linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,77,253,1) 100%);
+background: -webkit-linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,77,253,1) 100%);
+background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,77,253,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#22c1c3",endColorstr="#2d4dfd",GradientType=1);
   text-align: center;
   padding: 2rem;
 }
