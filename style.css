@@ -1,7 +1,11 @@
 /* Base styles applicable to all screens */
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #f2f2f2;
+  background: rgb(121,9,56);
+background: -moz-radial-gradient(circle, rgba(121,9,56,1) 40%, rgba(0,36,8,1) 61%, rgba(0,212,255,1) 100%);
+background: -webkit-radial-gradient(circle, rgba(121,9,56,1) 40%, rgba(0,36,8,1) 61%, rgba(0,212,255,1) 100%);
+background: radial-gradient(circle, rgba(121,9,56,1) 40%, rgba(0,36,8,1) 61%, rgba(0,212,255,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#790938",endColorstr="#00d4ff",GradientType=1);
   margin: 0;
   padding: 0;
 }
