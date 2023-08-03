@@ -1,17 +1,21 @@
 /* Base styles applicable to all screens */
 body {
   font-family: 'Poppins', sans-serif;
-  margin: 0;
   padding: 0;
-background: rgb(34,193,195);
-background: linear-gradient(41deg, rgba(34,193,195,1) 0%, rgba(38,151,216,1) 21%, rgba(66,126,214,1) 31%, rgba(45,77,253,1) 38%, rgba(40,135,224,1) 50%);
-background-repeat: no-repeat;
+  background: rgb(34, 193, 195);
+  background: linear-gradient(41deg, rgba(34, 193, 195, 1) 0%, rgba(38, 151, 216, 1) 21%, rgba(66, 126, 214, 1) 31%, rgba(45, 77, 253, 1) 38%, rgba(40, 135, 224, 1) 50%);
+  background-repeat: no-repeat;
 }
 
 header {
-
   text-align: center;
   padding: 2rem;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
@@ -86,21 +90,21 @@ main {
   header {
     padding: 1rem;
   }
-  
+
   h1 {
     font-size: 1.5rem;
   }
-  
+
   .choices {
     flex-wrap: wrap;
   }
-  
+
   .choices img {
     width: 6rem;
     height: 6rem;
     margin: 0.5rem;
   }
-  
+
   #result {
     font-size: 2rem;
   }
@@ -108,9 +112,8 @@ main {
   #score h1 {
     font-size: 1.2rem;
   }
-  
+
   #score p {
     font-size: 1rem;
   }
 }
-
