@@ -44,8 +44,12 @@ header {
 /* Style pour les choix du jeu */
 .choices {
   display: flex;
-   justify-content: space-around;
-  margin-top: 20px;
+  justify-content: space-around;
+  margin-top: 20px; 
+    
+}
+img{
+  border-radius: 50%;
 }
 
 .choice {
@@ -59,11 +63,7 @@ header {
 }
 
 img:hover {
-  transform: scale(1.2);
-}
-
-img:hover {
-  transform: scale(1.5); /* Agrandir l'image survolée */
+  transform: scale(1.1); /* Agrandir l'image survolée */
 }
 
 /* Style pour les résultats */
