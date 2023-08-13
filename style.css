@@ -49,14 +49,13 @@ header {
   margin-top: 20px;
 }
 
-.choices {
-  flex: 1;
+.choice {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   cursor: pointer;
   transition: transform 0.3s ease;
-  margin: 0 10px;
+  margin: 0 -5px; /* Réduire l'espace horizontal */
 }
 
 .choice:hover {
