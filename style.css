@@ -43,21 +43,13 @@ header {
 }
 
 /* Style pour les choix du jeu */
-.choice {
-  display: flex;
+.choice:hover {
   justify-content: space-around;
   margin-top: 20px;
-}
-
-.choice {
-  justify-content: space-around;
   align-items: center;
   cursor: pointer;
   transition: transform 0.3s ease;
   margin: 0 -5px; /* Réduire l'espace horizontal */
-}
-
-.choice:hover {
   transform: scale(1.5);
 }
 
