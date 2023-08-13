@@ -58,11 +58,11 @@ header {
   margin: 0 10px;
 }
 
-.choice:hover {
+img:hover {
   transform: scale(1.2);
 }
 
-.choice:hover img {
+img:hover {
   transform: scale(1.5); /* Agrandir l'image survolée */
 }
 
