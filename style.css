@@ -59,8 +59,8 @@ header {
   margin: 0 10px;
 }
 
-.choices:hover {
-  transform: scale(1.1);
+.choice:hover {
+  transform: scale(1.5);
 }
 
 /* Style pour les résultats */
