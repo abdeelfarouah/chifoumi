@@ -1,15 +1,14 @@
 /* Style général pour le corps de la page */
 body {
   font-family: Arial, sans-serif;
-  background: cornflowerblue;
+  background-color: cornflowerblue;
   margin: 0;
   padding: 0;
 }
 
 /* En-tête du jeu */
 header {
-  background: cornflowerblue;
-  margin: 0;
+  background-color: cornflowerblue;
   color: #ffffff;
   text-align: center;
   padding: 20px;
@@ -26,7 +25,7 @@ header {
 }
 
 .error-message {
-  color: #ff0000; /* Couleur rouge */
+  color: #ff0000;
   font-size: 14px;
   margin-top: 5px;
   display: none;
@@ -43,14 +42,24 @@ header {
 }
 
 /* Style pour les choix du jeu */
-.choice:hover {
-  justify-content: space-around;
+.choices {
+  display: flex;
+  justify-content: center;
   margin-top: 20px;
+}
+
+.choice {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   cursor: pointer;
   transition: transform 0.3s ease;
-  margin: 0 -5px; /* Réduire l'espace horizontal */
-  transform: scale(1.5);
+  margin: 0 10px;
+}
+
+.choice:hover {
+  transform: scale(1.2);
 }
 
 /* Style pour les résultats */
@@ -58,6 +67,7 @@ header {
   font-size: 18px;
   margin-top: 20px;
   color: #333;
+  text-align: center;
 }
 
 /* Style pour les scores */
@@ -90,7 +100,6 @@ header {
 
 /* Médias queries pour des écrans de taille différente */
 @media (max-width: 768px) {
-  /* Appliquer des styles spécifiques aux écrans jusqu'à 768px de largeur */
   header {
     padding: 10px;
   }
@@ -100,3 +109,4 @@ header {
     align-items: center;
   }
 }
+
