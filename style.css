@@ -92,3 +92,16 @@ header {
   font-size: 18px;
   color: #555;
 }
+
+/* Médias queries pour des écrans de taille différente */
+@media (max-width: 768px) {
+  /* Appliquer des styles spécifiques aux écrans jusqu'à 768px de largeur */
+  header {
+    padding: 10px;
+  }
+
+  .choices {
+    flex-direction: column;
+    align-items: center;
+  }
+}
