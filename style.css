@@ -1,14 +1,14 @@
 /* Style général pour le corps de la page */
 body {
   font-family: Arial, sans-serif;
-  background:cornflowerblue;
+  background: cornflowerblue;
   margin: 0;
   padding: 0;
 }
 
 /* En-tête du jeu */
 header {
-  background:cornflowerblue;
+  background: cornflowerblue;
   margin: 0;
   color: #ffffff;
   text-align: center;
@@ -49,12 +49,17 @@ header {
   margin-top: 20px;
 }
 
-#rock, #paper, #scissors {
+.choice {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   transition: transform 0.3s ease;
+  margin: 0 10px;
 }
 
-#rock:hover, #paper:hover, #scissors:hover {
+.choice:hover {
   transform: scale(1.1);
 }
 
