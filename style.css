@@ -62,6 +62,10 @@ header {
   transform: scale(1.2);
 }
 
+.choice:hover img {
+  transform: scale(1.5); /* Agrandir l'image survolée */
+}
+
 /* Style pour les résultats */
 #result {
   font-size: 18px;
