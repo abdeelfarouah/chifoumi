@@ -8,4 +8,4 @@ yarn-error.log
 .env*
 !.env*.example
 
-.vscode/
+.vscode

@@ -1,119 +1,94 @@
-/* Base styles applicable to all screens */
+/* Style général pour le corps de la page */
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: Arial, sans-serif;
+  background:cornflowerblue;
+  margin: 0;
   padding: 0;
-  background: rgb(34, 193, 195);
-  background: linear-gradient(41deg, rgba(34, 193, 195, 1) 0%, rgba(38, 151, 216, 1) 21%, rgba(66, 126, 214, 1) 31%, rgba(45, 77, 253, 1) 38%, rgba(40, 135, 224, 1) 50%);
-  background-repeat: no-repeat;
 }
 
+/* En-tête du jeu */
 header {
+  background:cornflowerblue;
+  margin: 0;
+  color: #ffffff;
   text-align: center;
-  padding: 2rem;
+  padding: 20px;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+/* Style pour le champ de saisie et le bouton de démarrage */
+#playerName {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
 }
 
-h1 {
-  margin: 0;
-  font-size: 2rem;
+.error-message {
+  color: #ff0000; /* Couleur rouge */
+  font-size: 14px;
+  margin-top: 5px;
+  display: none;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-  padding: 0 1rem;
+#startButton {
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #3586b2;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
+/* Style pour les choix du jeu */
 .choices {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1.5rem;
+  justify-content: space-around;
+  margin-top: 20px;
 }
 
-.choices img {
-  width: 8rem;
-  height: 8rem;
-  margin: 0 1rem;
+#rock, #paper, #scissors {
   cursor: pointer;
-  border-radius: 50%;
-  box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
-.choices img:hover {
-  transform: translateY(-0.3rem);
-  box-shadow: 0 0.6rem 0.8rem rgba(0, 0, 0, 0.4);
+#rock:hover, #paper:hover, #scissors:hover {
+  transform: scale(1.1);
 }
 
+/* Style pour les résultats */
 #result {
-  font-size: 3rem;
-  font-weight: bold;
-  margin-top: 2rem;
-  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
   color: #333;
 }
 
+/* Style pour les scores */
 #score {
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#score h1 {
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
-}
-
-#score p {
-  margin: 0.5rem 0;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #333;
   text-align: center;
-  text-transform: uppercase;
+  margin-top: 20px;
 }
 
-/* Styles specific to small screens (mobile) */
-@media (max-width: 767px) {
-  header {
-    padding: 1rem;
-  }
+/* Style pour le popup de score */
+.score-popup {
+  background-color: rgba(255, 255, 255, 0.9);
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-  h1 {
-    font-size: 1.5rem;
-  }
+.score-popup h1 {
+  margin-top: 0;
+  font-size: 24px;
+  color: #333;
+}
 
-  .choices {
-    flex-wrap: wrap;
-  }
-
-  .choices img {
-    width: 6rem;
-    height: 6rem;
-    margin: 0.5rem;
-  }
-
-  #result {
-    font-size: 2rem;
-  }
-
-  #score h1 {
-    font-size: 1.2rem;
-  }
-
-  #score p {
-    font-size: 1rem;
-  }
+.score-popup p {
+  margin: 15px 0;
+  font-size: 18px;
+  color: #555;
 }

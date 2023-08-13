@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-   <meta property="og:image" content="IMG_5283.ico">
-	  <title>Rock Paper Scissors</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body>
-    <header>
-      <h1>Rock Paper Scissors</h1>
-    </header>
-    <main>
-      <p>Choose your weapon:</p>
-      <div class="choices">
-        <img id="rock" src="rock.jpg" alt="Rock" width="150" height="150" >
-        <img id="paper" src="paper.png" alt="Paper" width="150" height="150" >
-        <img id="scissors" src="scissors.png" alt="Scissors" width="150" height="150" >
-      </div>
-      <p id="result"></p>
-      <div id="score">
-        <h1>Score</h1>
-        <p>Player: <span id="playerScore"></span></p>
-        <p>Computer: <span id="computerScore"></span></p>
-      </div>
-    </main>
-    <script src="app.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta property="og:image" content="IMG_5283.ico">
+  <title>Rock Paper Scissors</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Rock Paper Scissors</h1>
+    <div>
+      <label for="playerName">Enter your name:</label>
+      <input type="text" id="playerName" />
+      <p id="nameErrorMessage" class="error-message">Please enter a valid name.</p>
+      <button id="startButton">Start</button>
+    </div>
+  </header>
+  <main>
+    <p>Choose your weapon:</p>
+    <div class="choices">
+      <img id="rock" src="rock.jpg" alt="Rock" width="150" height="150" >
+      <img id="paper" src="paper.png" alt="Paper" width="150" height="150" >
+      <img id="scissors" src="scissors.png" alt="Scissors" width="150" height="150" >
+    </div>
+    <p id="result"></p>
+    <div id="score">
+      <h1>Score</h1>
+      <p>Player: <span id="playerScore">0</span></p>
+      <p>Computer: <span id="computerScore">0</span></p>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
 </html>
 
 
