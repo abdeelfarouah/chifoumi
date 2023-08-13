@@ -44,7 +44,7 @@ header {
 /* Style pour les choix du jeu */
 .choices {
   display: flex;
-  justify-content: center;
+   justify-content: space-around;
   margin-top: 20px;
 }
 
