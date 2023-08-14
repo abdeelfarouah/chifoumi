@@ -103,14 +103,51 @@ img:hover {
 }
 
 /* Médias queries pour des écrans de taille différente */
+/* Médias queries pour les petits écrans */
 @media (max-width: 768px) {
-  header {
-    padding: 10px;
+  .choices {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
-  .choices {
-    flex-direction: column;
-    align-items: center;
+  .choice {
+    margin: 10px 0;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 0 5px;
+  }
+
+  #scissors {
+    order: 3; /* Change l'ordre d'affichage pour les ciseaux */
   }
 }
 
+/* Médias queries pour les tablettes */
+@media (min-width: 769px) and (max-width: 1024px) {
+  header {
+    padding: 15px;
+  }
+
+  .choices {
+    flex-direction: row;
+    margin-top: 30px;
+  }
+
+  .choice {
+    margin: 0 20px;
+  }
+}
+/* Médias queries pour les écrans de bureau */
+@media (min-width: 1025px) {
+  header {
+    padding: 30px;
+  }
+
+  .choices {
+    margin-top: 50px;
+  }
+
+  .choice {
+    margin: 0 30px;
+  }
+}
