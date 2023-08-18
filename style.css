@@ -13,15 +13,13 @@ body {
   font-size: 24px;
 }
 
-/* En-tête du jeu */
 header {
-  background-color: var(--primary-color);
+  background-color: cornflowerblue;
   color: #ffffff;
   text-align: center;
   padding: 20px;
 }
 
-/* Style pour le champ de saisie et le bouton de démarrage */
 #playerName {
   padding: 10px;
   font-size: 16px;
@@ -39,16 +37,15 @@ header {
 }
 
 #startButton {
-  padding: 12px 24px;
-  font-size: 16px;
   background-color: var(--primary-color);
   color: #ffffff;
+  padding: 12px 24px;
+  font-size: 16px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-/* Style pour les choix du jeu */
 .choices {
   display: flex;
   justify-content: space-around;
@@ -61,34 +58,33 @@ header {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin: 0 10px;
-  order: 0;
 }
 
 .choice img {
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
 }
 
 .choice img:hover {
   transform: scale(1.1);
+  box-shadow: 0 0.6rem 0.8rem rgba(0, 0, 0, 0.4);
 }
 
-/* Style pour les résultats */
 #result {
   font-size: 18px;
   margin-top: 20px;
-  color: var(--text-color);
+  color: #333;
   text-align: center;
 }
 
-/* Style pour les scores */
 #score {
   text-align: center;
   margin-top: 20px;
 }
 
-/* Style pour le popup de score */
 .score-popup {
   background-color: rgba(255, 255, 255, 0.9);
   font-family: Arial, sans-serif;
@@ -101,7 +97,7 @@ header {
 .score-popup h1 {
   margin-top: 0;
   font-size: 24px;
-  color: var(--text-color);
+  color: #333;
 }
 
 .score-popup p {
@@ -110,8 +106,6 @@ header {
   color: #555;
 }
 
-/* Médias queries pour des écrans de taille différente */
-/* Médias queries pour les petits écrans */
 @media (max-width: 768px) {
   .choices {
     flex-wrap: wrap;
@@ -123,15 +117,13 @@ header {
     width: 50%;
     box-sizing: border-box;
     padding: 0 5px;
-    order: 0;
   }
 
   #scissors {
-    order: 3; /* Change l'ordre d'affichage pour les ciseaux */
+    order: 3;
   }
 }
 
-/* Médias queries pour les tablettes */
 @media (min-width: 769px) and (max-width: 1024px) {
   header {
     padding: 15px;
@@ -147,7 +139,6 @@ header {
   }
 }
 
-/* Médias queries pour les écrans de bureau */
 @media (min-width: 1025px) {
   header {
     padding: 30px;
@@ -161,3 +152,4 @@ header {
     margin: 0 30px;
   }
 }
+
