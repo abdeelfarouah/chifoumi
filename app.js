@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let playerScore = 0;
   let computerScore = 0;
 
+  const choices = ["rock", "paper", "scissors"];
   const choiceImages = {
     rock: document.getElementById("rock"),
     paper: document.getElementById("paper"),
@@ -63,8 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  const choices = ["rock", "paper", "scissors"];
-
   choices.forEach(choice => {
     choiceImages[choice].addEventListener("click", () => {
       if (playerName === "") {
@@ -107,11 +106,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function shuffleChoiceImages() {
-    choices.forEach(choice => {
-      const randomOrder = Math.floor(Math.random() * choices.length);
-      choiceImages[choice].style.order = randomOrder;
+    const shuffledChoices = choices.slice();
+    for (let i = shuffledChoices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledChoices[i], shuffledChoices[j]] = [shuffledChoices[j], shuffledChoices[i]];
+    }
+    
+    shuffledChoices.forEach((choice, index) => {
+      choiceImages[choice].style.order = index;
     });
   }
 });
-
-
