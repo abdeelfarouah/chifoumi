@@ -4,20 +4,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultElement = document.getElementById("result");
   const playerScoreElement = document.getElementById("playerScore");
   const computerScoreElement = document.getElementById("computerScore");
-  const nameErrorMessage = document.getElementById("nameErrorMessage"); 
+  const nameErrorMessage = document.getElementById("nameErrorMessage");
 
-  let playerName = ""; 
+  let playerName = "";
   let playerScore = 0;
   let computerScore = 0;
+
+  const choiceImages = {
+    rock: document.getElementById("rock"),
+    paper: document.getElementById("paper"),
+    scissors: document.getElementById("scissors")
+  };
 
   playerNameInput.addEventListener("input", () => {
     playerName = playerNameInput.value.trim();
     if (playerName === "") {
       startButton.disabled = true;
-      nameErrorMessage.style.display = "block"; 
+      nameErrorMessage.style.display = "block";
     } else {
       startButton.disabled = false;
-      nameErrorMessage.style.display = "none"; 
+      nameErrorMessage.style.display = "none";
     }
   });
 
@@ -33,9 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     playerScoreElement.textContent = playerScore;
     computerScoreElement.textContent = computerScore;
 
-    choiceImages.rock.disabled = false;
-    choiceImages.paper.disabled = false;
-    choiceImages.scissors.disabled = false;
+    enableChoiceButtons();
   });
 
   function playRound(playerSelection, computerSelection) {
@@ -43,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
       resultElement.textContent = "Please enter a valid name before playing.";
       return;
     }
-  
+
     if (playerSelection === computerSelection) {
       return "It's a tie!";
     } else if (
@@ -58,13 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
       return "Computer wins!";
     }
   }
-  
+
   const choices = ["rock", "paper", "scissors"];
-  const choiceImages = {
-    rock: document.getElementById("rock"),
-    paper: document.getElementById("paper"),
-    scissors: document.getElementById("scissors")
-  };
 
   choices.forEach(choice => {
     choiceImages[choice].addEventListener("click", () => {
@@ -72,14 +71,14 @@ document.addEventListener("DOMContentLoaded", () => {
         resultElement.textContent = "Please enter a valid name before playing.";
         return;
       }
-  
+
       const computerChoice = choices[Math.floor(Math.random() * choices.length)];
       const result = playRound(choice, computerChoice);
       resultElement.textContent = `${result} ${playerName} chose ${choice} and the computer chose ${computerChoice}.`;
-  
+
       playerScoreElement.textContent = playerScore;
       computerScoreElement.textContent = computerScore;
-  
+
       if (playerScore === 10) {
         alert(`Congratulations ${playerName}! You win the game!`);
         resetGame();
@@ -87,6 +86,8 @@ document.addEventListener("DOMContentLoaded", () => {
         alert(`Oops ${playerName}! You lose the game.`);
         resetGame();
       }
+
+      shuffleChoiceImages();
     });
   });
 
@@ -96,8 +97,21 @@ document.addEventListener("DOMContentLoaded", () => {
     playerScoreElement.textContent = playerScore;
     computerScoreElement.textContent = computerScore;
     resultElement.textContent = "";
+    enableChoiceButtons();
+  }
+
+  function enableChoiceButtons() {
+    choiceImages.rock.disabled = false;
+    choiceImages.paper.disabled = false;
+    choiceImages.scissors.disabled = false;
+  }
+
+  function shuffleChoiceImages() {
+    choices.forEach(choice => {
+      const randomOrder = Math.floor(Math.random() * choices.length);
+      choiceImages[choice].style.order = randomOrder;
+    });
   }
 });
 
-});
 
