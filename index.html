@@ -1,5 +1,5 @@
-<!DOCTYPE html<lang="en">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, user-scalable=yes">
@@ -20,9 +20,15 @@
   <main>
     <p>Choose your weapon:</p>
     <div class="choices">
-      <img id="rock" src="rock.jpg" alt="Rock" width="150" height="150" >
-      <img id="paper" src="paper.png" alt="Paper" width="150" height="150" >
-      <img id="scissors" src="scissors.png" alt="Scissors" width="150" height="150" >
+      <div class="choice" id="rock">
+        <img src="rock.jpg" alt="Rock" width="150" height="150">
+      </div>
+      <div class="choice" id="paper">
+        <img src="paper.png" alt="Paper" width="150" height="150">
+      </div>
+      <div class="choice" id="scissors">
+        <img src="scissors.png" alt="Scissors" width="150" height="150">
+      </div>
     </div>
     <p id="result"></p>
     <div id="score">
@@ -34,6 +40,7 @@
   <script src="app.js"></script>
 </body>
 </html>
+
 
 
 
