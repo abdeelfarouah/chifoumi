@@ -52,7 +52,7 @@ header {
   margin-top: 20px;
 }
 
-.choice {
+ .choice img:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,16 +60,9 @@ header {
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin: 0 10px;
-}
-
-.choice img {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.choice img:hover {
   transform: scale(1.1);
   box-shadow: 0 0.6rem 0.8rem rgba(0, 0, 0, 0.4);
 }
