@@ -1,9 +1,9 @@
-/* Style général pour le corps de la page */
 :root {
   --primary-color: #3586b2;
   --background-color: cornflowerblue;
   --text-color: #333;
 }
+
 body {
   font-family: Arial, sans-serif;
   background-color: var(--background-color);
@@ -12,7 +12,7 @@ body {
   padding: 0;
   font-size: 24px;
 }
-/* En-tête du jeu */
+
 header {
   background-color: cornflowerblue;
   color: #ffffff;
@@ -20,7 +20,6 @@ header {
   padding: 20px;
 }
 
-/* Style pour le champ de saisie et le bouton de démarrage */
 #playerName {
   padding: 10px;
   font-size: 16px;
@@ -40,16 +39,20 @@ header {
 #startButton {
   background-color: var(--primary-color);
   color: #ffffff;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-/* Style pour les choix du jeu */
 .choices {
   display: flex;
   justify-content: space-around;
-  margin-top: 20px; 
-    
+  margin-top: 20px;
 }
-img{
+
+img {
   border-radius: 50%;
 }
 
@@ -64,10 +67,9 @@ img{
 }
 
 img:hover {
-  transform: scale(1.1); /* Agrandir l'image survolée */
+  transform: scale(1.1);
 }
 
-/* Style pour les résultats */
 #result {
   font-size: 18px;
   margin-top: 20px;
@@ -75,13 +77,11 @@ img:hover {
   text-align: center;
 }
 
-/* Style pour les scores */
 #score {
   text-align: center;
   margin-top: 20px;
 }
 
-/* Style pour le popup de score */
 .score-popup {
   background-color: rgba(255, 255, 255, 0.9);
   font-family: Arial, sans-serif;
@@ -90,6 +90,7 @@ img:hover {
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .score-popup h1 {
   margin-top: 0;
   font-size: 24px;
@@ -102,8 +103,6 @@ img:hover {
   color: #555;
 }
 
-/* Médias queries pour des écrans de taille différente */
-/* Médias queries pour les petits écrans */
 @media (max-width: 768px) {
   .choices {
     flex-wrap: wrap;
@@ -111,7 +110,6 @@ img:hover {
   }
 
   .choice {
-    .choice {
     margin: 10px 0;
     padding: 0 5px;
     width: 50%;
@@ -119,11 +117,10 @@ img:hover {
   }
 
   #scissors {
-    order: 3; /* Change l'ordre d'affichage pour les ciseaux */
+    order: 3;
   }
 }
 
-/* Médias queries pour les tablettes */
 @media (min-width: 769px) and (max-width: 1024px) {
   header {
     padding: 15px;
@@ -138,7 +135,7 @@ img:hover {
     margin: 0 20px;
   }
 }
-/* Médias queries pour les écrans de bureau */
+
 @media (min-width: 1025px) {
   header {
     padding: 30px;
