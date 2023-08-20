@@ -5,15 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const playerScoreElement = document.getElementById("playerScore");
   const computerScoreElement = document.getElementById("computerScore");
   const nameErrorMessage = document.getElementById("nameErrorMessage");
-  const scoreTable = document.getElementById("scoreTable");
-  const scoreTableBody = document.getElementById("scoreTableBody");
+  const scoreTableBody = document.querySelector("#score table tbody");
 
   let playerName = "";
   let playerScore = 0;
   let computerScore = 0;
-
-  // Tableau pour stocker les données des scores
-  let scoreData = [];
 
   const choices = ["rock", "paper", "scissors"];
   const choiceImages = {
@@ -85,9 +81,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (playerScore === 10) {
         alert(`Congratulations ${playerName}! You win the game!`);
+        addToScoreTable(playerName, playerScore, computerScore);
         resetGame();
       } else if (computerScore === 10) {
         alert(`Oops ${playerName}! You lose the game.`);
+        addToScoreTable(playerName, playerScore, computerScore);
         resetGame();
       }
 
@@ -96,12 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function resetGame() {
-    // Sauvegarder le score dans le tableau des scores
-    saveScore(playerName, playerScore, computerScore);
-
-    // Mettre à jour le tableau des scores
-    updateScoreTable();
-
     playerScore = 0;
     computerScore = 0;
     playerScoreElement.textContent = playerScore;
@@ -118,6 +110,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function shuffleChoiceImages() {
     const shuffledChoices = choices.slice();
-    for (let i = shuffledChoices.length - 1; i >
+    for (let i = shuffledChoices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledChoices[i], shuffledChoices[j]] = [shuffledChoices[j], shuffledChoices[i]];
+    }
+    
+    shuffledChoices.forEach((choice, index) => {
+      choiceImages[choice].style.order = index;
+    });
+  }
 
-
+  function addToScoreTable(playerName, playerScore, computerScore) {
+    const newRow = scoreTableBody.insertRow();
+    const playerNameCell = newRow.insertCell(0);
+    const playerScoreCell = newRow.insertCell(1);
+    const computerScoreCell = newRow.insertCell(2);
+    playerNameCell.textContent = playerName;
+    playerScoreCell.textContent = playerScore;
+    computerScoreCell.textContent = computerScore;
+  }
+});
