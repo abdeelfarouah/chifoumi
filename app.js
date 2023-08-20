@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultElement = document.getElementById("result");
   const playerScoreElement = document.getElementById("playerScore");
   const computerScoreElement = document.getElementById("computerScore");
-  const nameErrorMessage = document.getElementById("nameErrorMessage");
   const playerNameCell = document.getElementById("playerNameCell");
 
   let playerName = "";
@@ -20,12 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   playerNameInput.addEventListener("input", () => {
     playerName = playerNameInput.value.trim();
+    playerNameCell.textContent = playerName;
     if (playerName === "") {
       startButton.disabled = true;
-      nameErrorMessage.style.display = "block";
     } else {
       startButton.disabled = false;
-      nameErrorMessage.style.display = "none";
     }
   });
 
@@ -36,12 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     resultElement.textContent = "Choose your weapon:";
-    playerNameCell.textContent = playerName; // Afficher le nom du joueur
-    playerScore = 0;
-    computerScore = 0;
-    playerScoreElement.textContent = playerScore;
-    computerScoreElement.textContent = computerScore;
-
     enableChoiceButtons();
   });
 
@@ -82,9 +74,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (playerScore === 10) {
         alert(`Congratulations ${playerName}! You win the game!`);
+        addScoreToTable(playerName, playerScore, computerScore);
         resetGame();
       } else if (computerScore === 10) {
         alert(`Oops ${playerName}! You lose the game.`);
+        addScoreToTable(playerName, playerScore, computerScore);
         resetGame();
       }
 
@@ -93,10 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function resetGame() {
-    playerScore = 0;
-    computerScore = 0;
-    playerScoreElement.textContent = playerScore;
-    computerScoreElement.textContent = computerScore;
     resultElement.textContent = "";
     enableChoiceButtons();
   }
@@ -117,6 +107,17 @@ document.addEventListener("DOMContentLoaded", () => {
     shuffledChoices.forEach((choice, index) => {
       choiceImages[choice].style.order = index;
     });
+  }
+
+  function addScoreToTable(playerName, playerScore, computerScore) {
+    const table = document.querySelector("table tbody");
+    const newRow = table.insertRow();
+    const cell1 = newRow.insertCell(0);
+    const cell2 = newRow.insertCell(1);
+    const cell3 = newRow.insertCell(2);
+    cell1.textContent = playerName;
+    cell2.textContent = playerScore;
+    cell3.textContent = computerScore;
   }
 });
 
