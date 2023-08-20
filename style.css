@@ -81,11 +81,23 @@ header {
 
 table {
   width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #333;
 }
 
 th, td {
-  padding: 5px;
+  padding: 8px;
   text-align: center;
+}
+
+th {
+  background-color: var(--primary-color);
+  color: white;
 }
 
 @media (max-width: 768px) {
@@ -112,25 +124,5 @@ th, td {
   }
 
   .choices {
-    flex-direction: row;
-    margin-top: 30px;
-  }
+    flex-direction:
 
-  .choice {
-    margin: 0 20px;
-  }
-}
-
-@media (min-width: 1025px) {
-  header {
-    padding: 30px;
-  }
-
-  .choices {
-    margin-top: 50px;
-  }
-
-  .choice {
-    margin: 0 30px;
-  }
-}
