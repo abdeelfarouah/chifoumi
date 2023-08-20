@@ -100,12 +100,22 @@ header {
   color: #555;
 }
 
-table {
+/* Ajout de styles pour le tableau des scores */
+#scoreTable {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
 
-table, th, td {
-  border: 1px
+#scoreTable th,
+#scoreTable td {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+#scoreTable th {
+  background-color: var(--primary-color);
+  color: #fff;
+}
 
