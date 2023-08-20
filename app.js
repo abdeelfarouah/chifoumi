@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultElement = document.getElementById("result");
   const playerScoreElement = document.getElementById("playerScore");
   const computerScoreElement = document.getElementById("computerScore");
+  const playerNameCell = document.getElementById("playerNameCell");
+  const computerNameCell = document.getElementById("computerNameCell");
   const nameErrorMessage = document.getElementById("nameErrorMessage");
 
   let playerName = "";
@@ -19,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   playerNameInput.addEventListener("input", () => {
     playerName = playerNameInput.value.trim();
+    playerNameCell.textContent = playerName; // Update player's name in the table
     if (playerName === "") {
       startButton.disabled = true;
       nameErrorMessage.style.display = "block";
