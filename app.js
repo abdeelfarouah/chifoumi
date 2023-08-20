@@ -7,15 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const nameErrorMessage = document.getElementById("nameErrorMessage");
   const playerNameCell = document.getElementById("playerNameCell");
 
-  let playerName = localStorage.getItem("playerName") || "";
-  let playerScore = parseInt(localStorage.getItem("playerScore")) || 0;
-  let computerScore = parseInt(localStorage.getItem("computerScore")) || 0;
-
-  // Update the player's name input with the saved name, if any.
-  playerNameInput.value = playerName;
-
-  // Display player's name in the table cell.
-  playerNameCell.textContent = playerName;
+  let playerName = "";
+  let playerScore = 0;
+  let computerScore = 0;
 
   const choices = ["rock", "paper", "scissors"];
   const choiceImages = {
@@ -33,12 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
       startButton.disabled = false;
       nameErrorMessage.style.display = "none";
     }
-
-    // Update the player's name in the table cell.
-    playerNameCell.textContent = playerName;
-
-    // Save the player's name to localStorage.
-    localStorage.setItem("playerName", playerName);
   });
 
   startButton.addEventListener("click", () => {
@@ -48,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     resultElement.textContent = "Choose your weapon:";
+    playerNameCell.textContent = playerName; // Afficher le nom du joueur
     playerScore = 0;
     computerScore = 0;
     playerScoreElement.textContent = playerScore;
@@ -124,9 +113,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffledChoices[i], shuffledChoices[j]] = [shuffledChoices[j], shuffledChoices[i]];
     }
-
+    
     shuffledChoices.forEach((choice, index) => {
       choiceImages[choice].style.order = index;
     });
   }
 });
+
