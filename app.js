@@ -5,11 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const playerScoreElement = document.getElementById("playerScore");
   const computerScoreElement = document.getElementById("computerScore");
   const nameErrorMessage = document.getElementById("nameErrorMessage");
-  const scoreTableBody = document.querySelector("#score table tbody");
+  const scoreTableBody = document.getElementById("scoreBody");
 
   let playerName = "";
   let playerScore = 0;
   let computerScore = 0;
+  let gameCount = 0;
 
   const choices = ["rock", "paper", "scissors"];
   const choiceImages = {
@@ -81,12 +82,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (playerScore === 10) {
         alert(`Congratulations ${playerName}! You win the game!`);
-        addToScoreTable(playerName, playerScore, computerScore);
+        saveScore(playerName, playerScore, computerScore); // Enregistrer le score
         resetGame();
       } else if (computerScore === 10) {
         alert(`Oops ${playerName}! You lose the game.`);
-        addToScoreTable(playerName, playerScore, computerScore);
+        saveScore(playerName, playerScore, computerScore); // Enregistrer le score
         resetGame();
+      } else {
+        gameCount++;
+        if (gameCount === 10) {
+          alert(`Game over. ${playerName}, you have completed 10 games.`);
+          resetGame();
+        }
       }
 
       shuffleChoiceImages();
@@ -94,10 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function resetGame() {
-    playerScore = 0;
-    computerScore = 0;
-    playerScoreElement.textContent = playerScore;
-    computerScoreElement.textContent = computerScore;
+    gameCount = 0; // Réinitialiser le compteur de parties
     resultElement.textContent = "";
     enableChoiceButtons();
   }
@@ -114,19 +118,54 @@ document.addEventListener("DOMContentLoaded", () => {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffledChoices[i], shuffledChoices[j]] = [shuffledChoices[j], shuffledChoices[i]];
     }
-    
+
     shuffledChoices.forEach((choice, index) => {
       choiceImages[choice].style.order = index;
     });
   }
 
-  function addToScoreTable(playerName, playerScore, computerScore) {
-    const newRow = scoreTableBody.insertRow();
-    const playerNameCell = newRow.insertCell(0);
-    const playerScoreCell = newRow.insertCell(1);
-    const computerScoreCell = newRow.insertCell(2);
-    playerNameCell.textContent = playerName;
+  // Fonction pour ajouter le score au tableau des scores
+  function addScoreToTable(playerName, playerScore, computerScore) {
+    const newRow = document.createElement("tr");
+    const nameCell = document.createElement("td");
+    const playerScoreCell = document.createElement("td");
+    const computerScoreCell = document.createElement("td");
+
+    nameCell.textContent = playerName;
     playerScoreCell.textContent = playerScore;
     computerScoreCell.textContent = computerScore;
+
+    newRow.appendChild(nameCell);
+    newRow.appendChild(playerScoreCell);
+    newRow.appendChild(computerScoreCell);
+
+    scoreTableBody.appendChild(newRow);
   }
+
+  // Sauvegarder les scores dans le stockage local
+  function saveScoresToLocalStorage() {
+    localStorage.setItem("playerScores", JSON.stringify(playerScores));
+  }
+
+  // Charger les scores depuis le stockage local (s'il existe)
+  function loadScoresFromLocalStorage() {
+    const storedScores = JSON.parse(localStorage.getItem("playerScores"));
+    if (storedScores) {
+      playerScores = storedScores;
+      playerScores.forEach(score => {
+        addScoreToTable(score.name, score.playerScore, score.computerScore);
+      });
+    }
+  }
+
+  // Enregistrer le score actuel
+  function saveScore(playerName, playerScore, computerScore) {
+    playerScores.push({ name: playerName, playerScore: playerScore, computerScore: computerScore });
+    addScoreToTable(playerName, playerScore, computerScore);
+    saveScoresToLocalStorage();
+  }
+
+  // Appeler la fonction pour initialiser le tableau des scores
+  loadScoresFromLocalStorage();
+  initializeScoreTable();
 });
