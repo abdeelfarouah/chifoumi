@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const playerScoreElement = document.getElementById("playerScore");
   const computerScoreElement = document.getElementById("computerScore");
   const nameErrorMessage = document.getElementById("nameErrorMessage");
-  const scoreTableBody = document.querySelector("#score table tbody");
+  const scoreTableBody = document.getElementById("scoreBody"); // Ajout de l'élément pour le tableau des scores
 
   let playerName = "";
   let playerScore = 0;
@@ -17,6 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
     paper: document.getElementById("paper"),
     scissors: document.getElementById("scissors")
   };
+
+  // Charger les scores et noms depuis le stockage local
+  let playerScores = JSON.parse(localStorage.getItem("playerScores")) || [];
+
+  // Fonction pour sauvegarder les scores dans le stockage local
+  function saveScoresToLocalStorage() {
+    localStorage.setItem("playerScores", JSON.stringify(playerScores));
+  }
 
   playerNameInput.addEventListener("input", () => {
     playerName = playerNameInput.value.trim();
@@ -81,11 +89,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (playerScore === 10) {
         alert(`Congratulations ${playerName}! You win the game!`);
-        addToScoreTable(playerName, playerScore, computerScore);
+        addGameResult(playerName, playerScore, computerScore); // Ajout du résultat du jeu au tableau des scores
         resetGame();
       } else if (computerScore === 10) {
         alert(`Oops ${playerName}! You lose the game.`);
-        addToScoreTable(playerName, playerScore, computerScore);
+        addGameResult(playerName, playerScore, computerScore); // Ajout du résultat du jeu au tableau des scores
         resetGame();
       }
 
@@ -120,13 +128,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function addToScoreTable(playerName, playerScore, computerScore) {
-    const newRow = scoreTableBody.insertRow();
-    const playerNameCell = newRow.insertCell(0);
-    const playerScoreCell = newRow.insertCell(1);
-    const computerScoreCell = newRow.insertCell(2);
-    playerNameCell.textContent = playerName;
-    playerScoreCell.textContent = playerScore;
-    computerScoreCell.textContent = computerScore;
-  }
-});
+  // Fonction pour ajouter un résultat de jeu au tableau des scores
+  function addGameResult(playerName, playerScore, computerScore) {
+    playerScores.push({ playerName
