@@ -1,93 +1,106 @@
-:root {
-  --primary-color: #3586b2;
-  --background-color: cornflowerblue;
-  --text-color: #333;
-}
-
+/* Styles généraux */
 body {
   font-family: Arial, sans-serif;
-  background-color: var(--background-color);
-  color: var(--text-color);
   margin: 0;
   padding: 0;
-  font-size: 24px;
-}
-
-header {
-  background-color: cornflowerblue;
-  color: #ffffff;
+  background-color: #f0f8ff; /* Bleu très clair */
   text-align: center;
-  padding: 20px;
 }
 
-#playerName {
-  padding: 10px;
-  font-size: 16px;
-  background-color: #e0e0e0;
-  border: none;
-  border-radius: 5px;
-  margin-right: 10px;
+h1 {
+  color: #0d98ba; /* Bleu-vert clair */
 }
 
-.error-message {
-  color: #ff0000;
-  font-size: 14px;
-  margin-top: 5px;
+/* Styles pour l'en-tête */
+header {
+  background-color: #07689f; /* Bleu-vert plus foncé */
+  color: #fff;
+  padding: 20px 0;
+}
+
+/* Styles pour le formulaire de nom de joueur */
+label {
+  font-weight: bold;
+  color: #0d98ba; /* Bleu-vert clair */
+}
+
+#error-message {
+  color: #e74c3c; /* Rouge */
   display: none;
 }
 
-#startButton {
-  background-color: var(--primary-color);
-  color: #ffffff;
-  padding: 12px 24px;
-  font-size: 16px;
+input[type="text"] {
+  padding: 5px;
+  width: 200px;
+  margin-right: 10px;
+  border: 1px solid #2ecc71; /* Vert vif */
+}
+
+button#startButton {
+  background-color: #0d98ba; /* Bleu-vert clair */
+  color: #fff;
   border: none;
-  border-radius: 5px;
+  padding: 10px 20px;
   cursor: pointer;
 }
 
+button#startButton:hover {
+  background-color: #07689f; /* Bleu-vert plus foncé au survol */
+}
+
+/* Styles pour le jeu */
+main {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+p {
+  font-size: 18px;
+  color: #0d98ba; /* Bleu-vert clair */
+}
+
+/* Styles pour les choix de l'utilisateur */
 .choices {
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
 }
 
-.choice img:hover {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.choice {
+  text-align: center;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: 0 10px;
-  width: 150px;
-  height: 150px;
+  padding: 10px;
   border-radius: 50%;
-  transform: scale(1.1);
-  box-shadow: 0 0.6rem 0.8rem rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
+.choice:hover {
+  background-color: #27ae60; /* Vert plus foncé au survol */
+}
+
+/* Styles pour le résultat */
 #result {
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: bold;
   margin-top: 20px;
-  color: #333;
-  text-align: center;
+  color: #0d98ba; /* Bleu-vert clair */
 }
 
+/* Styles pour le tableau de scores */
 #score {
-  text-align: center;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
-thead {
-  background-color: var(--primary-color);
-  color: white;
+table, th, td {
+  border: 1px solid #ccc;
 }
 
 th, td {
@@ -95,6 +108,13 @@ th, td {
   text-align: center;
 }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
+th {
+  background-color: #0d98ba; /* Bleu-vert clair */
+  color: #fff;
+}
+
+/* Styles pour les images des choix */
+.choice img {
+  max-width: 100%;
+  height: auto;
 }
