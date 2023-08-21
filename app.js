@@ -19,6 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
     scissors: document.getElementById("scissors")
   };
 
+  // Charger les scores et noms depuis le stockage local
+  let playerScores = JSON.parse(localStorage.getItem("playerScores")) || [];
+
+  // Fonction pour sauvegarder les scores dans le stockage local
+  function saveScoresToLocalStorage() {
+    localStorage.setItem("playerScores", JSON.stringify(playerScores));
+  }
+
   playerNameInput.addEventListener("input", () => {
     playerName = playerNameInput.value.trim();
     if (playerName === "") {
