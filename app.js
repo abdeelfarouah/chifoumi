@@ -12,10 +12,18 @@ document.addEventListener("DOMContentLoaded", () => {
     scissors: document.getElementById("scissors"),
   };
 
-  let players = [];
+  const imagePaths = {
+    rock: "rock.jpg",
+    paper: "paper.png",
+    scissors: "scissors.png",
+  };
+
+  let playerName = null;
+  let playerScore = 0;
+  let computerScore = 0;
 
   playerNameInput.addEventListener("input", () => {
-    const playerName = playerNameInput.value.trim();
+    playerName = playerNameInput.value.trim();
     if (playerName === "") {
       startButton.disabled = true;
       nameErrorMessage.style.display = "block";
@@ -26,28 +34,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   startButton.addEventListener("click", () => {
-    const playerName = playerNameInput.value.trim();
-    if (playerName === "") {
+    if (!playerName) {
       resultElement.textContent = "Please enter a valid name.";
       return;
     }
 
     resultElement.textContent = "Choose your weapon:";
-    const currentPlayer = players.find((player) => player.name === playerName);
-    if (!currentPlayer) {
-      const newPlayer = {
-        name: playerName,
-        playerScore: 0,
-        computerScore: 0,
-      };
-      players.push(newPlayer);
-      addNewPlayerRow(newPlayer);
-    }
     enableChoiceButtons();
   });
 
-  function playRound(playerSelection, computerSelection, currentPlayer) {
-    if (!currentPlayer) {
+  function playRound(playerSelection, computerSelection) {
+    if (!playerName) {
       resultElement.textContent = "Please enter a valid name before playing.";
       return;
     }
@@ -59,40 +56,67 @@ document.addEventListener("DOMContentLoaded", () => {
       (playerSelection === "paper" && computerSelection === "rock") ||
       (playerSelection === "scissors" && computerSelection === "paper")
     ) {
-      currentPlayer.playerScore++;
+      playerScore++;
       return "You win!";
     } else {
-      currentPlayer.computerScore++;
+      computerScore++;
       return "Computer wins!";
     }
   }
 
+  // Fonction pour mélanger les images
+  function shuffleImages() {
+    const shuffledChoices = [...choices];
+    for (let i = shuffledChoices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledChoices[i], shuffledChoices[j]] = [shuffledChoices[j], shuffledChoices[i]];
+    }
+    return shuffledChoices;
+  }
+
   choices.forEach((choice) => {
     choiceImages[choice].addEventListener("click", () => {
-      const playerName = playerNameInput.value.trim();
-      const currentPlayer = players.find((player) => player.name === playerName);
-
-      if (!currentPlayer) {
+      if (!playerName) {
         resultElement.textContent = "Please enter a valid name before playing.";
         return;
       }
 
       const computerChoice = choices[Math.floor(Math.random() * choices.length)];
-      const result = playRound(choice, computerChoice, currentPlayer);
-      resultElement.textContent = `${result} ${
-        currentPlayer.name
-      } chose ${choice} and the computer chose ${computerChoice}.`;
+      const result = playRound(choice, computerChoice);
+      resultElement.textContent = `${result} ${playerName} chose ${choice} and the computer chose ${computerChoice}.`;
 
-      updateScores();
-      if (
-        currentPlayer.playerScore === 10 ||
-        currentPlayer.computerScore === 10
-      ) {
-        if (currentPlayer.playerScore === 10) {
-          alert(`Congratulations ${currentPlayer.name}! You win the game!`);
+      // Mélanger les images après chaque clic
+      const shuffledChoices = shuffleImages();
+      choices.forEach((choice, index) => {
+        const imgPath = imagePaths[shuffledChoices[index]];
+        choiceImages[choice].src = imgPath;
+      });
+
+      if (playerScore === 10 || computerScore === 10) {
+        if (playerScore === 10) {
+          alert(`Congratulations ${playerName}! You win the game!`);
         } else {
-          alert(`Oops ${currentPlayer.name}! You lose the game.`);
+          alert(`Oops ${playerName}! You lose the game.`);
         }
+
+        // Mettez à jour le tableau des scores avec le nom du joueur et le score final
+        const newRow = document.createElement("tr");
+        const nameCell = document.createElement("td");
+        const playerScoreCell = document.createElement("td");
+        const computerScoreCell = document.createElement("td");
+
+        nameCell.textContent = playerName;
+        playerScoreCell.textContent = playerScore;
+        computerScoreCell.textContent = computerScore;
+
+        newRow.appendChild(nameCell);
+        newRow.appendChild(playerScoreCell);
+        newRow.appendChild(computerScoreCell);
+
+        scoreTableBody.appendChild(newRow);
+
+        playerScore = 0;
+        computerScore = 0;
       }
     });
   });
@@ -100,30 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function enableChoiceButtons() {
     choices.forEach((choice) => {
       choiceImages[choice].style.pointerEvents = "auto";
-    });
-  }
-
-  function addNewPlayerRow(player) {
-    const newRow = scoreTableBody.insertRow();
-    const nameCell = newRow.insertCell(0);
-    const playerScoreCell = newRow.insertCell(1);
-    const computerScoreCell = newRow.insertCell(2);
-
-    nameCell.textContent = player.name;
-    playerScoreCell.textContent = player.playerScore;
-    computerScoreCell.textContent = player.computerScore;
-  }
-
-  function updateScores() {
-    players.forEach((player) => {
-      const playerRow = [...scoreTableBody.rows].find(
-        (row) => row.cells[0].textContent === player.name
-      );
-
-      if (playerRow) {
-        playerRow.cells[1].textContent = player.playerScore;
-        playerRow.cells[2].textContent = player.computerScore;
-      }
     });
   }
 });

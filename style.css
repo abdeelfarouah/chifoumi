@@ -24,13 +24,13 @@ label {
   color: #0d98ba; /* Bleu-vert clair */
 }
 
-#error-message {
+#nameErrorMessage { 
   color: #e74c3c; /* Rouge */
   display: none;
 }
 
 input[type="text"] {
-  padding: 5px;
+  padding: 8px; /* Réduction de la taille de l'espacement */
   width: 200px;
   margin-right: 10px;
   border: 1px solid #2ecc71; /* Vert vif */
@@ -97,6 +97,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  border-spacing: 0; /* Réduction de l'espacement des cellules */
 }
 
 table, th, td {
@@ -104,7 +105,7 @@ table, th, td {
 }
 
 th, td {
-  padding: 10px;
+  padding: 8px; /* Réduction de la taille de la cellule */
   text-align: center;
 }
 
