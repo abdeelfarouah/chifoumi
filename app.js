@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const startButton = document.getElementById("startButton");
   const resultElement = document.getElementById("result");
   const nameErrorMessage = document.getElementById("nameErrorMessage");
-  const scoreTableBody = document.getElementById("scoreBody");
+  const scoreTableBody = document.getElementById("scoreTableBody");
 
   const choices = ["rock", "paper", "scissors"];
   const choiceImages = {
