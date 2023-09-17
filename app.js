@@ -92,34 +92,34 @@ document.addEventListener("DOMContentLoaded", () => {
         choiceImages[choice].src = imgPath;
       });
 
-      if (playerScore === 10 || computerScore === 10) {
-        if (playerScore === 10) {
-          alert(`Congratulations ${playerName}! You win the game!`);
-        } else {
-          alert(`Oops ${playerName}! You lose the game.`);
-        }
+     if (playerScore === 10 || computerScore === 10) {
+  if (playerScore === 10) {
+    alert(`Congratulations ${playerName}! You win the game!`);
+  } else {
+    alert(`Oops ${playerName}! You lose the game.`);
+  }
 
-        // Mettez à jour le tableau des scores avec le nom du joueur et le score final
-        const newRow = document.createElement("tr");
-        const nameCell = document.createElement("td");
-        const playerScoreCell = document.createElement("td");
-        const computerScoreCell = document.createElement("td");
+  // Mettez à jour le tableau des scores avec le nom du joueur et le score final
+  const newRow = document.createElement("tr");
+  const nameCell = document.createElement("td");
+  const playerScoreCell = document.createElement("td");
+  const computerScoreCell = document.createElement("td");
 
-        nameCell.textContent = playerName;
-        playerScoreCell.textContent = playerScore;
-        computerScoreCell.textContent = computerScore;
+  nameCell.textContent = playerName;
+  playerScoreCell.textContent = playerScore;
+  computerScoreCell.textContent = computerScore;
 
-        newRow.appendChild(nameCell);
-        newRow.appendChild(playerScoreCell);
-        newRow.appendChild(computerScoreCell);
+  newRow.appendChild(nameCell);
+  newRow.appendChild(playerScoreCell);
+  newRow.appendChild(computerScoreCell);
 
-        scoreTableBody.appendChild(newRow);
+  // Ajoutez la nouvelle ligne au tableau des scores
+  scoreTableBody.appendChild(newRow);
 
-        playerScore = 0;
-        computerScore = 0;
-      }
-    });
-  });
+  // Réinitialisez les scores
+  playerScore = 0;
+  computerScore = 0;
+}
 
   function enableChoiceButtons() {
     choices.forEach((choice) => {
