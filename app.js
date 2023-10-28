@@ -18,17 +18,13 @@ document.addEventListener("DOMContentLoaded", () => {
     scissors: "scissors.png",
   };
 
-  let playerName = localStorage.getItem("playerName") || null;
-  let playerScore = parseInt(localStorage.getItem("playerScore")) || 0;
-  let computerScore = parseInt(localStorage.getItem("computerScore")) || 0;
-
-  if (playerName) {
-    playerNameInput.value = playerName;
-  }
+  let playerName = null;
+  let playerScore = 0;
+  let computerScore = 0;
 
   playerNameInput.addEventListener("input", () => {
     playerName = playerNameInput.value.trim();
-    if (playerName.length < 4) {
+    if (playerName === "") {
       startButton.disabled = true;
       nameErrorMessage.style.display = "block";
     } else {
@@ -38,14 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   startButton.addEventListener("click", () => {
-    playerName = playerNameInput.value.trim();
-    if (playerName.length < 4) {
-      nameErrorMessage.style.display = "block";
-      resultElement.textContent = "Please enter a valid name with at least 4 characters.";
+    if (!playerName) {
+      resultElement.textContent = "Please enter a valid name.";
       return;
     }
 
-    localStorage.setItem("playerName", playerName);
     resultElement.textContent = "Choose your weapon:";
     enableChoiceButtons();
   });
@@ -64,13 +57,21 @@ document.addEventListener("DOMContentLoaded", () => {
       (playerSelection === "scissors" && computerSelection === "paper")
     ) {
       playerScore++;
-      localStorage.setItem("playerScore", playerScore);
       return "You win!";
     } else {
       computerScore++;
-      localStorage.setItem("computerScore", computerScore);
       return "Computer wins!";
     }
+  }
+
+  // Fonction pour mélanger les images
+  function shuffleImages() {
+    const shuffledChoices = [...choices];
+    for (let i = shuffledChoices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledChoices[i], shuffledChoices[j]] = [shuffledChoices[j], shuffledChoices[i]];
+    }
+    return shuffledChoices;
   }
 
   function enableChoiceButtons() {
@@ -90,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = playRound(choice, computerChoice);
       resultElement.textContent = `${result} ${playerName} chose ${choice} and the computer chose ${computerChoice}.`;
 
+      // Mélanger les images après chaque clic
       const shuffledChoices = shuffleImages();
       choices.forEach((choice, index) => {
         const imgPath = imagePaths[shuffledChoices[index]];
@@ -99,25 +101,33 @@ document.addEventListener("DOMContentLoaded", () => {
       if (playerScore === 10 || computerScore === 10) {
         if (playerScore === 10) {
           alert(`Congratulations ${playerName}! You win the game!`);
-        } else {
+        } else if (computerScore === 10) {
           alert(`Oops ${playerName}! You lose the game.`);
+        } else {
+          alert(`It's a tie!`);
         }
+
+        // Mettez à jour le tableau des scores avec le nom du joueur et le score final
+        const newRow = document.createElement("tr");
+        const nameCell = document.createElement("td");
+        const playerScoreCell = document.createElement("td");
+        const computerScoreCell = document.createElement("td");
+
+        nameCell.textContent = playerName;
+        playerScoreCell.textContent = playerScore;
+        computerScoreCell.textContent = computerScore;
+
+        newRow.appendChild(nameCell);
+        newRow.appendChild(playerScoreCell);
+        newRow.appendChild(computerScoreCell);
+
+        // Ajoutez la nouvelle ligne au tableau des scores
+        scoreTableBody.appendChild(newRow);
 
         // Réinitialisez les scores
         playerScore = 0;
         computerScore = 0;
-        localStorage.removeItem("playerScore");
-        localStorage.removeItem("computerScore");
       }
     });
   });
-
-  function shuffleImages() {
-    const shuffledChoices = [...choices];
-    for (let i = shuffledChoices.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledChoices[i], shuffledChoices[j]] = [shuffledChoices[j], shuffledChoices[i]];
-    }
-    return shuffledChoices;
-  }
 });
