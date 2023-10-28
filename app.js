@@ -99,27 +99,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (playerScore === 10 || computerScore === 10) {
         if (playerScore === 10) {
           alert(`Congratulations ${playerName}! You win the game!`);
-        } else if (computerScore === 10) {
-          alert(`Oops ${playerName}! You lose the game.`);
         } else {
-          alert(`It's a tie!`);
+          alert(`Oops ${playerName}! You lose the game.`);
         }
 
-        const newRow = document.createElement("tr");
-        const nameCell = document.createElement("td");
-        const playerScoreCell = document.createElement("td");
-        const computerScoreCell = document.createElement("td");
-
-        nameCell.textContent = playerName;
-        playerScoreCell.textContent = playerScore;
-        computerScoreCell.textContent = computerScore;
-
-        newRow.appendChild(nameCell);
-        newRow.appendChild(playerScoreCell);
-        newRow.appendChild(computerScoreCell);
-
-        scoreTableBody.appendChild(newRow);
-
+        // Réinitialisez les scores
         playerScore = 0;
         computerScore = 0;
         localStorage.removeItem("playerScore");
