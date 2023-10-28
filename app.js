@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   playerNameInput.addEventListener("input", () => {
     playerName = playerNameInput.value.trim();
-    if (playerName === "") {
+    if (playerName.length < 4) {
       startButton.disabled = true;
       nameErrorMessage.style.display = "block";
     } else {
@@ -39,13 +39,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   startButton.addEventListener("click", () => {
     playerName = playerNameInput.value.trim();
-    if (playerName === "") {
-      nameErrorMessage.style display = "block";
+    if (playerName.length < 4) {
+      nameErrorMessage.style.display = "block";
+      resultElement.textContent = "Please enter a valid name with at least 4 characters.";
       return;
     }
 
     localStorage.setItem("playerName", playerName);
-
     resultElement.textContent = "Choose your weapon:";
     enableChoiceButtons();
   });
@@ -127,6 +127,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  function shuffleImages() {
+    const shuffledChoices = [...choices];
+    for (let i = shuffledChoices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledChoices[i], shuffledChoices[j]] = [shuffledChoices[j], shuffledChoices[i]];
+    }
+    return shuffledChoices;
+  }
 });
-
-
