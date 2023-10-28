@@ -18,9 +18,13 @@ document.addEventListener("DOMContentLoaded", () => {
     scissors: "scissors.png",
   };
 
-  let playerName = null;
-  let playerScore = 0;
-  let computerScore = 0;
+  let playerName = localStorage.getItem("playerName") || null;
+  let playerScore = parseInt(localStorage.getItem("playerScore")) || 0;
+  let computerScore = parseInt(localStorage.getItem("computerScore")) || 0;
+
+  if (playerName) {
+    playerNameInput.value = playerName;
+  }
 
   playerNameInput.addEventListener("input", () => {
     playerName = playerNameInput.value.trim();
@@ -34,10 +38,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   startButton.addEventListener("click", () => {
-    if (!playerName) {
-      resultElement.textContent = "Please enter a valid name.";
+    playerName = playerNameInput.value.trim();
+    if (playerName === "") {
+      nameErrorMessage.style.display = "block";
       return;
     }
+
+    localStorage.setItem("playerName", playerName); // Stockez le nom du joueur
 
     resultElement.textContent = "Choose your weapon:";
     enableChoiceButtons();
@@ -57,21 +64,13 @@ document.addEventListener("DOMContentLoaded", () => {
       (playerSelection === "scissors" && computerSelection === "paper")
     ) {
       playerScore++;
+      localStorage.setItem("playerScore", playerScore); // Stockez le score du joueur
       return "You win!";
     } else {
       computerScore++;
+      localStorage.setItem("computerScore", computerScore); // Stockez le score de l'ordinateur
       return "Computer wins!";
     }
-  }
-
-  // Fonction pour mélanger les images
-  function shuffleImages() {
-    const shuffledChoices = [...choices];
-    for (let i = shuffledChoices.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledChoices[i], shuffledChoices[j]] = [shuffledChoices[j], shuffledChoices[i]];
-    }
-    return shuffledChoices;
   }
 
   function enableChoiceButtons() {
@@ -79,6 +78,8 @@ document.addEventListener("DOMContentLoaded", () => {
       choiceImages[choice].style.pointerEvents = "auto";
     });
   }
+
+  // ... (le reste de votre code)
 
   choices.forEach((choice) => {
     choiceImages[choice].addEventListener("click", () => {
@@ -127,8 +128,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // Réinitialisez les scores
         playerScore = 0;
         computerScore = 0;
+        localStorage.removeItem("playerScore"); // Supprimez le score du joueur stocké
+        localStorage.removeItem("computerScore"); // Supprimez le score de l'ordinateur stocké
       }
     });
   });
 });
+
 
