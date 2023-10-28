@@ -40,11 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
   startButton.addEventListener("click", () => {
     playerName = playerNameInput.value.trim();
     if (playerName === "") {
-      nameErrorMessage.style.display = "block";
+      nameErrorMessage.style display = "block";
       return;
     }
 
-    localStorage.setItem("playerName", playerName); // Stockez le nom du joueur
+    localStorage.setItem("playerName", playerName);
 
     resultElement.textContent = "Choose your weapon:";
     enableChoiceButtons();
@@ -64,11 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
       (playerSelection === "scissors" && computerSelection === "paper")
     ) {
       playerScore++;
-      localStorage.setItem("playerScore", playerScore); // Stockez le score du joueur
+      localStorage.setItem("playerScore", playerScore);
       return "You win!";
     } else {
       computerScore++;
-      localStorage.setItem("computerScore", computerScore); // Stockez le score de l'ordinateur
+      localStorage.setItem("computerScore", computerScore);
       return "Computer wins!";
     }
   }
@@ -78,8 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
       choiceImages[choice].style.pointerEvents = "auto";
     });
   }
-
-  // ... (le reste de votre code)
 
   choices.forEach((choice) => {
     choiceImages[choice].addEventListener("click", () => {
@@ -92,7 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = playRound(choice, computerChoice);
       resultElement.textContent = `${result} ${playerName} chose ${choice} and the computer chose ${computerChoice}.`;
 
-      // Mélanger les images après chaque clic
       const shuffledChoices = shuffleImages();
       choices.forEach((choice, index) => {
         const imgPath = imagePaths[shuffledChoices[index]];
@@ -108,7 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
           alert(`It's a tie!`);
         }
 
-        // Mettez à jour le tableau des scores avec le nom du joueur et le score final
         const newRow = document.createElement("tr");
         const nameCell = document.createElement("td");
         const playerScoreCell = document.createElement("td");
@@ -122,14 +118,12 @@ document.addEventListener("DOMContentLoaded", () => {
         newRow.appendChild(playerScoreCell);
         newRow.appendChild(computerScoreCell);
 
-        // Ajoutez la nouvelle ligne au tableau des scores
         scoreTableBody.appendChild(newRow);
 
-        // Réinitialisez les scores
         playerScore = 0;
         computerScore = 0;
-        localStorage.removeItem("playerScore"); // Supprimez le score du joueur stocké
-        localStorage.removeItem("computerScore"); // Supprimez le score de l'ordinateur stocké
+        localStorage.removeItem("playerScore");
+        localStorage.removeItem("computerScore");
       }
     });
   });
