@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   let playerName = localStorage.getItem("playerName") || null;
   let playerScore = 0;
   let computerScore = 0;
+  let gameActive = false;
 
   playerNameInput.addEventListener("input", () => {
     playerName = playerNameInput.value.trim();
@@ -50,13 +51,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    displayResult("Choose your weapon:");
-    enableChoiceButtons();
+    startNewGame(); // Nouvelle fonction pour démarrer le jeu
   });
 
+  function startNewGame() {
+    gameActive = true;
+    displayResult("Choose your weapon:");
+    enableChoiceButtons();
+  }
+
   function playRound(playerSelection, computerSelection) {
-    if (!playerName) {
-      displayResult("Please enter a valid name before playing.");
+    if (!playerName || !gameActive) {
+      displayResult("Please enter a valid name and start a new game.");
       return;
     }
 
@@ -116,8 +122,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   choices.forEach((choice) => {
     choiceImages[choice].addEventListener("click", () => {
-      if (!playerName) {
-        displayResult("Please enter a valid name before playing.");
+      if (!playerName || !gameActive) {
+        displayResult("Please enter a valid name and start a new game.");
         return;
       }
 
@@ -135,11 +141,35 @@ document.addEventListener("DOMContentLoaded", async () => {
         saveDataToJson(); // Sauvegarde des données après chaque partie
         updateScoreTable();
 
-        playerScore = 0;
-        computerScore = 0;
+        if (playerScore === MAX_VICTORIES) {
+          showPopup("Congratulations! You are the winner!");
+        } else {
+          showPopup("Computer is the winner. Better luck next time!");
+        }
+
+        // Bloquer les choix après la fin du jeu
+        gameActive = false;
+        resetGame(); // Nouvelle fonction pour réinitialiser le jeu
       }
     });
   });
+
+  function showPopup(message) {
+    alert(message);
+  }
+
+  function resetGame() {
+    // Réinitialiser les scores et désactiver les choix
+    playerScore = 0;
+    computerScore = 0;
+    disableChoiceButtons();
+  }
+
+  function disableChoiceButtons() {
+    choices.forEach((choice) => {
+      choiceImages[choice].style.pointerEvents = "none";
+    });
+  }
 
   function saveDataToJson() {
     const dataToSave = {
