@@ -84,27 +84,25 @@ document.addEventListener("DOMContentLoaded", () => {
   function displayResult(message) {
     resultElement.textContent = message;
   }
-// Exemple d'itération sur chaque enregistrement de joueur
-  gameData.forEach((playerRecord) => {
-    console.log(playerRecord.playerName); // Affiche le nom du joueur
-    console.log(playerRecord.playerScore); // Affiche le score du joueur
-    console.log(playerRecord.computerScore); // Affiche le score de l'ordinateur
-  });
+
   function updateScoreTable() {
-    const newRow = document.createElement("tr");
-    const nameCell = document.createElement("td");
-    const playerScoreCell = document.createElement("td");
-    const computerScoreCell = document.createElement("td");
+    // Ajouter chaque enregistrement de joueur au tableau des scores
+    gameData.forEach((playerRecord) => {
+      const newRow = document.createElement("tr");
+      const nameCell = document.createElement("td");
+      const playerScoreCell = document.createElement("td");
+      const computerScoreCell = document.createElement("td");
 
-    nameCell.textContent = playerName;
-    playerScoreCell.textContent = playerScore;
-    computerScoreCell.textContent = computerScore;
+      nameCell.textContent = playerRecord.playerName;
+      playerScoreCell.textContent = playerRecord.playerScore;
+      computerScoreCell.textContent = playerRecord.computerScore;
 
-    newRow.appendChild(nameCell);
-    newRow.appendChild(playerScoreCell);
-    newRow.appendChild(computerScoreCell);
+      newRow.appendChild(nameCell);
+      newRow.appendChild(playerScoreCell);
+      newRow.appendChild(computerScoreCell);
 
-    scoreTableBody.appendChild(newRow);
+      scoreTableBody.appendChild(newRow);
+    });
   }
 
   choices.forEach((choice) => {
@@ -141,7 +139,10 @@ document.addEventListener("DOMContentLoaded", () => {
       computerScore: computerScore,
     };
 
-    const jsonData = JSON.stringify(dataToSave);
+    // Ajouter le nouvel enregistrement au tableau des scores
+    gameData.push(dataToSave);
+
+    const jsonData = JSON.stringify(gameData);
     localStorage.setItem("gameData", jsonData);
   }
 
