@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultElement = document.getElementById("result");
   const nameErrorMessage = document.getElementById("nameErrorMessage");
   const scoreTableBody = document.getElementById("scoreTableBody");
+  const gameDataJson = document.getElementById("gameData").textContent;
+  const gameData = JSON.parse(gameDataJson);
   const choices = ["rock", "paper", "scissors"];
   const choiceImages = {
     rock: document.getElementById("rock"),
@@ -82,7 +84,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function displayResult(message) {
     resultElement.textContent = message;
   }
-
+// Exemple d'itération sur chaque enregistrement de joueur
+  gameData.forEach((playerRecord) => {
+    console.log(playerRecord.playerName); // Affiche le nom du joueur
+    console.log(playerRecord.playerScore); // Affiche le score du joueur
+    console.log(playerRecord.computerScore); // Affiche le score de l'ordinateur
+  });
   function updateScoreTable() {
     const newRow = document.createElement("tr");
     const nameCell = document.createElement("td");
