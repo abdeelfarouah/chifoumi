@@ -180,4 +180,3 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Appeler la fonction pour charger les données depuis le stockage local
   loadGameDataFromLocalStorage();
 });
-
