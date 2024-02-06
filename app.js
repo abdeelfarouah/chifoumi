@@ -1,4 +1,7 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  const gameDataResponse = await fetch('gameData.json');
+  const gameData = await gameDataResponse.json();
+
   const MAX_VICTORIES = 10;
 
   const playerNameInput = document.getElementById("playerName");
