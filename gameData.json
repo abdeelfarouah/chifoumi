@@ -1,47 +1,52 @@
-{
-  "playerName": "Johnny",
-  "playerScore": 5,
-  "computerScore": 3
-},
-{
-      "playerName": "John Doe",
-      "playerScore": 5,
-      "computerScore": 3
-    },
-    {
-      "playerName": "Jane Smith",
-      "playerScore": 8,
-      "computerScore": 2
-    },
-{
-      "playerName": "John Doe",
-      "playerScore": 5,
-      "computerScore": 3
-    },
-    {
-      "playerName": "Jaone Smith",
-      "playerScore": 8,
-      "computerScore": 2
-    },{
-      "playerName": "Jack Doe",
-      "playerScore": 5,
-      "computerScore": 3
-    },
-    {
-      "playerName": "James Smith",
-      "playerScore": 8,
-      "computerScore": 2
-    },{
-      "playerName": "John Doe",
-      "playerScore": 5,
-      "computerScore": 3
-    },
-    {
-      "playerName": "Jane Smith",
-      "playerScore": 8,
-      "computerScore": 2
-    }, {
-      "playerName": "Jene Smith",
-      "playerScore": 8,
-      "computerScore": 2
-    }
+[
+  {
+    "playerName": "Johnny",
+    "playerScore": 5,
+    "computerScore": 3
+  },
+  {
+    "playerName": "John Doe",
+    "playerScore": 5,
+    "computerScore": 3
+  },
+  {
+    "playerName": "Jane Smith",
+    "playerScore": 8,
+    "computerScore": 2
+  },
+  {
+    "playerName": "John Doe",
+    "playerScore": 5,
+    "computerScore": 3
+  },
+  {
+    "playerName": "Jaone Smith",
+    "playerScore": 8,
+    "computerScore": 2
+  },
+  {
+    "playerName": "Jack Doe",
+    "playerScore": 5,
+    "computerScore": 3
+  },
+  {
+    "playerName": "James Smith",
+    "playerScore": 8,
+    "computerScore": 2
+  },
+  {
+    "playerName": "John Doe",
+    "playerScore": 5,
+    "computerScore": 3
+  },
+  {
+    "playerName": "Jane Smith",
+    "playerScore": 8,
+    "computerScore": 2
+  },
+  {
+    "playerName": "Jene Smith",
+    "playerScore": 8,
+    "computerScore": 2
+  }
+]
