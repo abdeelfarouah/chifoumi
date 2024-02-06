@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const shuffledChoices = shuffleImages();
       choices.forEach((choice, index) => {
         const imgPath = imagePaths[shuffledChoices[index]];
-        choiceImages[choice].src = imgPath;
+        choiceImages[choice].firstElementChild.src = imgPath;
       });
 
       if (playerScore === MAX_VICTORIES || computerScore === MAX_VICTORIES) {
