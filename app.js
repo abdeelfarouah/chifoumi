@@ -9,8 +9,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const resultElement = document.getElementById("result");
   const nameErrorMessage = document.getElementById("nameErrorMessage");
   const scoreTableBody = document.getElementById("scoreTableBody");
-  const gameDataJson = document.getElementById("gameData").textContent;
-  const gameData = JSON.parse(gameDataJson);
   const choices = ["rock", "paper", "scissors"];
   const choiceImages = {
     rock: document.getElementById("rock"),
@@ -182,3 +180,4 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Appeler la fonction pour charger les données depuis le stockage local
   loadGameDataFromLocalStorage();
 });
+
