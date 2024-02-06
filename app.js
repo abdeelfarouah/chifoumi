@@ -42,6 +42,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
+    // Vérifier si le nom est unique
+    const isUniqueName = gameData.every(playerRecord => playerRecord.playerName !== playerName);
+
+    if (!isUniqueName) {
+      displayResult("Name must be unique. Please enter a different name.");
+      return;
+    }
+
     displayResult("Choose your weapon:");
     enableChoiceButtons();
   });
@@ -180,4 +188,3 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Appeler la fonction pour charger les données depuis le stockage local
   loadGameDataFromLocalStorage();
 });
-
