@@ -151,11 +151,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (savedData) {
       const loadedData = JSON.parse(savedData);
 
-      playerName = loadedData.playerName;
-      playerScore = loadedData.playerScore;
-      computerScore = loadedData.computerScore;
+      // Iterer sur chaque enregistrement de joueur
+      loadedData.forEach((playerRecord) => {
+        const newRow = document.createElement("tr");
+        const nameCell = document.createElement("td");
+        const playerScoreCell = document.createElement("td");
+        const computerScoreCell = document.createElement("td");
 
-      updateScoreTable();
+        nameCell.textContent = playerRecord.playerName;
+        playerScoreCell.textContent = playerRecord.playerScore;
+        computerScoreCell.textContent = playerRecord.computerScore;
+
+        newRow.appendChild(nameCell);
+        newRow.appendChild(playerScoreCell);
+        newRow.appendChild(computerScoreCell);
+
+        scoreTableBody.appendChild(newRow);
+      });
+
+      // Mettre à jour les scores actuels
+      playerName = loadedData[loadedData.length - 1].playerName;
+      playerScore = loadedData[loadedData.length - 1].playerScore;
+      computerScore = loadedData[loadedData.length - 1].computerScore;
     }
   }
 
