@@ -48,6 +48,17 @@
       </table>
     </div>
   </main>
+  <script>
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.register('/sw.js') // Assurez-vous que le chemin est correct
+			.then((registration) => {
+				console.log('Service Worker enregistré avec succès:', registration);
+			})
+			.catch((error) => {
+    console.error('Erreur lors de l\'enregistrement du Service Worker:', error);
+});
+	}
+</script>
   <script type="application/json" id="gameData"></script>
   <script src="https://cdn.jsdelivr.net/gh/eligrey/FileSaver.js/FileSaver.js"></script>
   <script src="app.js"></script>
