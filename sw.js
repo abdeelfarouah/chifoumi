@@ -1,4 +1,4 @@
-const CACHE_NAME = 'my-cache-v1';
+const CACHE_NAME = 'my-cache-v2';
 const urlsToCache = [
   '/',
   '/chifoumi/rock.jpg',
@@ -9,7 +9,6 @@ const urlsToCache = [
 ];
 
 self.addEventListener('install', (event) => {
-  // Installation du service worker et mise en cache des ressources statiques
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => cache.addAll(urlsToCache))
@@ -17,37 +16,34 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  // Intercepte les requêtes réseau
   event.respondWith(
-    // Vérifie si la ressource est en cache
     caches.match(event.request)
       .then((cachedResponse) => {
-        // Si la ressource est en cache, la renvoie
         if (cachedResponse) {
           return cachedResponse;
         }
 
-        // Sinon, effectue la requête réseau et met à jour le cache
         return fetch(event.request)
           .then((response) => {
-            // Vérifie si la réponse est valide
             if (!response || response.status !== 200 || response.type !== 'basic') {
               return response;
             }
 
-            // Met à jour le cache avec la nouvelle réponse
             const responseToCache = response.clone();
             caches.open(CACHE_NAME)
               .then((cache) => cache.put(event.request, responseToCache));
 
             return response;
+          })
+          .catch((error) => {
+            // Gestion des erreurs de réseau, si nécessaire
+            console.error('Erreur lors de la récupération de la ressource:', error);
           });
       })
   );
 });
 
 self.addEventListener('activate', (event) => {
-  // Supprime les anciens caches lorsqu'une nouvelle version est activée
   event.waitUntil(
     caches.keys()
       .then((cacheNames) => {
