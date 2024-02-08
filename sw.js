@@ -22,9 +22,3 @@ self.addEventListener('install', (event) => {
       })
   );
 });
-
-          })
-        );
-      })
-  );
-});
