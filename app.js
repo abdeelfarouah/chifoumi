@@ -146,11 +146,19 @@ document.addEventListener("DOMContentLoaded", async () => {
         } else {
           showPopup("Computer is the winner. Better luck next time!");
         }
+          // Utilisez requestAnimationFrame pour exécuter la fonction de mise à jour
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          if (playerScore === MAX_VICTORIES) {
+            showPopup("Congratulations! You are the winner!");
+          } else {
+            showPopup("Computer is the winner. Better luck next time!");
+          }
 
         // Bloquer les choix après la fin du jeu
         gameActive = false;
         resetGame(); // Nouvelle fonction pour réinitialiser le jeu
-      }
+      }, 1000);
     });
   });
 
