@@ -1,3 +1,14 @@
+// Définissez la variable CACHE_NAME avant de l'utiliser
+const CACHE_NAME = 'my-cache-v2';
+const urlsToCache = [
+  '/',
+  'rock.jpg',
+  'scissors.png',
+  'app.js',
+  'paper.png',
+  'style.css'
+];
+
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
