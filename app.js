@@ -160,8 +160,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         resetGame(); // Nouvelle fonction pour réinitialiser le jeu
       }, 1000);
     });
-  };
-
+    }
+  });
+}); 
   function showPopup(message) {
     alert(message);
   }
