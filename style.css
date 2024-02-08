@@ -100,3 +100,34 @@ th {
   background-color: #f9f9f9;
 }
 
+/* Préfixes vendeurs pour une compatibilité étendue */
+main {
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+input {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.button {
+  -webkit-appearance: none;
+}
+
+.choices {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+}
+
+.choice img {
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+
