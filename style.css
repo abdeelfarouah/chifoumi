@@ -129,5 +129,12 @@ input {
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
+/* New CSS for responsive images */
 
+@media screen and (max-width: 600px) {
+  .choice img {
+    width: 100%; /* Make the image take 100% of the container width */
+    height: auto; /* Maintain aspect ratio */
+  }
+}
 
