@@ -5,23 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-control" content="public, max-age=86400">
   <meta property="og:image" content="image.png">
-  	<title>Rock Paper Scissors</title>
+  <title>Rock Paper Scissors</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
   <header>
-	   <p>
-<a href="http://css-validator.org/check/referer">
-    <img style="border:0;width:88px;height:31px"
-        src="https://css-validator.org/images/vcss-blue.png"
-        alt="Valid CSS!" />
-</a>
-</p>
+    <p>
+      <a href="http://css-validator.org/check/referer">
+        <img style="border:0;width:88px;height:31px"
+             src="https://css-validator.org/images/vcss-blue.png"
+             alt="Valid CSS!" />
+      </a>
+    </p>
     <h1>Rock Paper Scissors</h1>
     <div>
       <label for="playerName">Enter your name:</label>
       <input type="text" id="playerName" />
-      <p id="nameErrorMessage" class="error-message">Please enter a valid name.</p>
+      <p id="nameErrorMessage" class="error-message" style="display: none;">Please enter a valid name.</p>
       <button id="startButton">Start</button>
     </div>
   </header>
@@ -56,20 +56,18 @@
     </div>
   </main>
   <script>
-	if ('serviceWorker' in navigator) {
-		navigator.serviceWorker.register('/chifoumi/sw.js') // Assurez-vous que le chemin est correct
-			.then((registration) => {
-				console.log('Service Worker enregistré avec succès:', registration);
-			})
-			.catch((error) => {
-    console.error('Erreur lors de l\'enregistrement du Service Worker:', error);
-});
-	}
-</script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/chifoumi/sw.js') // Ensure the path is correct
+        .then((registration) => {
+          console.log('Service Worker registered successfully:', registration);
+        })
+        .catch((error) => {
+          console.error('Service Worker registration error:', error);
+        });
+    }
+  </script>
   <script type="application/json" id="gameData"></script>
   <script src="https://cdn.jsdelivr.net/gh/eligrey/FileSaver.js/FileSaver.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
-
-
