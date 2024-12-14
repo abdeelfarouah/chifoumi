@@ -3,67 +3,108 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
-  background-color: #f5f5f5;
+  background: linear-gradient(135deg, #007bff, #28a745); /* Dégradé bleu-vert */
+  color: #fff;
+  min-height: 100vh;
 }
 
 header {
-  background-color: #007bff;
+  background: linear-gradient(135deg, #007bff, #28a745); /* Dégradé bleu-vert */
   color: white;
-  padding: 20px 0;
+  padding: 40px 0; /* Augmentation de l'espace */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
 }
 
 header h1 {
   margin: 0;
+  font-size: 2.5em; /* Augmenter la taille du titre */
 }
 
 .error-message {
   color: red;
+  font-size: 1.1em;
+  margin-top: 10px;
 }
 
 .choices {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
+  gap: 30px; /* Espacement entre les choix */
+  margin: 40px 0; /* Augmentation de l'espace */
 }
 
 .choice {
   margin: 0 10px;
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition plus douce */
 }
 
 .choice img {
   max-width: 100%;
   height: auto;
-  border: 2px solid transparent;
-  transition: transform 0.2s ease;
+  border: 3px solid transparent;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  border-radius: 10px; /* Coins arrondis */
 }
 
 .choice img:hover {
-  transform: scale(1.1);
-  border-color: #007bff;
+  transform: scale(1.2); /* Agrandir l'image au survol */
+  border-color: #28a745; /* Changer la couleur de la bordure en vert */
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.7); /* Ombre au survol */
 }
 
 #score {
-  margin-top: 20px;
+  margin-top: 40px; /* Augmentation de l'espace */
 }
 
 table {
   margin: 0 auto;
   border-collapse: collapse;
+  width: 80%; /* Largeur de table ajustée */
 }
 
 table, th, td {
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 15px;
   text-align: center;
+  font-size: 1.2em; /* Taille de police augmentée */
 }
 
 th {
-  background-color: #007bff;
+  background: linear-gradient(135deg, #007bff, #28a745); /* Dégradé bleu-vert */
   color: white;
 }
 
 td {
   background-color: #f9f9f9;
+  border-radius: 8px;
+  font-weight: bold;
 }
+
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+button:hover {
+  background-color: #0056b3; /* Couleur plus foncée au survol */
+}
+
+#result {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
 
