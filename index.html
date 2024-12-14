@@ -20,22 +20,22 @@
     <h1>Rock Paper Scissors</h1>
     <div>
       <label for="playerName">Enter your name:</label>
-      <input type="text" id="playerName" />
+      <input type="text" id="playerName" placeholder="Enter your name here" />
       <p id="nameErrorMessage" class="error-message" style="display: none;">Please enter a valid name.</p>
-      <button id="startButton">Start</button>
+      <button id="startButton" disabled>Start</button>
     </div>
   </header>
   <main>
     <p>Choose your weapon:</p>
     <div class="choices">
       <div class="choice" id="rock">
-        <img src="rock.jpg" alt="Rock" width="150" height="150">
+        <img src="rock.jpg" alt="Rock hand sign" width="150" height="150">
       </div>
       <div class="choice" id="paper">
-        <img src="paper.png" alt="Paper" width="150" height="150">
+        <img src="paper.png" alt="Paper hand sign" width="150" height="150">
       </div>
       <div class="choice" id="scissors">
-        <img src="scissors.png" alt="Scissors" width="150" height="150">
+        <img src="scissors.png" alt="Scissors hand sign" width="150" height="150">
       </div>
     </div>
     <p id="result"></p>
@@ -50,14 +50,16 @@
           </tr>
         </thead>
         <tbody id="scoreTableBody">
-          <!-- Scores will be added here dynamically -->
+          <tr>
+            <td colspan="3" style="text-align: center;">No scores yet</td>
+          </tr>
         </tbody>
       </table>
     </div>
   </main>
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/chifoumi/sw.js') // Ensure the path is correct
+      navigator.serviceWorker.register('./sw.js')
         .then((registration) => {
           console.log('Service Worker registered successfully:', registration);
         })
@@ -66,8 +68,6 @@
         });
     }
   </script>
-  <script type="application/json" id="gameData"></script>
-  <script src="https://cdn.jsdelivr.net/gh/eligrey/FileSaver.js/FileSaver.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
