@@ -10,7 +10,7 @@ body {
 
 header {
   background: linear-gradient(135deg, #007bff, #28a745); /* Dégradé bleu-vert */
-  color: white;
+  color: orange;
   padding: 40px 0; /* Augmentation de l'espace */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
 }
