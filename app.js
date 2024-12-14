@@ -174,5 +174,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   loadGameDataFromLocalStorage();
-});
 
+  // Define the displayResult function
+  function displayResult(message) {
+    resultElement.textContent = message;
+  }
+});
