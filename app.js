@@ -17,6 +17,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   let computerScore = 0;
   let gameActive = false;
 
+  // Chargement des données de jeu depuis le localStorage
+  let gameData = JSON.parse(localStorage.getItem("gameData")) || [];
+
+  // Affichage des scores précédents
+  updateScoreTable();
+
   // Gestion du nom du joueur
   playerNameInput.addEventListener("input", () => {
     playerName = playerNameInput.value.trim();
@@ -94,11 +100,44 @@ document.addEventListener("DOMContentLoaded", async () => {
     `;
   }
 
+  function updateScoreTable() {
+    scoreTableBody.innerHTML = ""; // Clear the table before re-populating
+
+    gameData.forEach(({ playerName, playerScore, computerScore }) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${playerName}</td>
+        <td>${playerScore}</td>
+        <td>${computerScore}</td>
+      `;
+      scoreTableBody.appendChild(row);
+    });
+  }
+
   function endGame() {
     gameActive = false;
     const winnerMessage = playerScore === MAX_VICTORIES
       ? "Congratulations! You won!"
       : "Computer wins! Better luck next time.";
     alert(winnerMessage);
+    saveDataToLocalStorage();
+    resetGame();
+  }
+
+  function saveDataToLocalStorage() {
+    // Ajouter le score de la partie actuelle au tableau gameData
+    gameData.push({ playerName, playerScore, computerScore });
+
+    // Sauvegarder le tableau dans le localStorage
+    localStorage.setItem("gameData", JSON.stringify(gameData));
+
+    // Mettre à jour le tableau des scores
+    updateScoreTable();
+  }
+
+  function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
+    updateScoreUI();
   }
 });
