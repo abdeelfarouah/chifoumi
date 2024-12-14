@@ -59,9 +59,11 @@ button:hover {
   background: linear-gradient(to right, #45a049, #4CAF50); /* Reverse gradient on hover */
 }
 
-.error-message {
+#nameErrorMessage {
+  display: none;
   color: red;
-  display: none; /* Hide error message by default */
+  font-weight: bold;
+  margin-top: 5px;
 }
 
 /* Choices Styles */
