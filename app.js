@@ -11,14 +11,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     scissors: document.getElementById("scissors"),
   };
   const MAX_VICTORIES = 10;
+  const MAX_PLAYERS = 20;
 
   let playerName = null;
   let playerScore = 0;
   let computerScore = 0;
   let gameActive = false;
 
-  // Chargement des données de jeu depuis le localStorage
-  let gameData = JSON.parse(localStorage.getItem("gameData")) || [];
+  // Chargement des données de jeu depuis le localStorage (ou un objet vide si pas de données)
+  let gameData = JSON.parse(localStorage.getItem("gameData")) || {};
 
   // Affichage des scores précédents
   updateScoreTable();
@@ -38,6 +39,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   startButton.addEventListener("click", () => {
     if (!playerName) {
       displayResult("Please enter a valid name.");
+      return;
+    }
+    if (Object.keys(gameData).length >= MAX_PLAYERS && !gameData[playerName]) {
+      displayResult("Maximum players reached. Please choose another name.");
       return;
     }
     startNewGame();
@@ -103,10 +108,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   function updateScoreTable() {
     scoreTableBody.innerHTML = ""; // Clear the table before re-populating
 
-    gameData.forEach(({ playerName, playerScore, computerScore }) => {
+    // Trier les joueurs par leur score
+    const sortedGameData = Object.entries(gameData)
+      .sort(([, a], [, b]) => b.playerScore - a.playerScore) // Trier par score décroissant
+      .slice(0, MAX_PLAYERS); // Limiter à MAX_PLAYERS
+
+    sortedGameData.forEach(([name, { playerScore, computerScore }]) => {
       const row = document.createElement("tr");
       row.innerHTML = `
-        <td>${playerName}</td>
+        <td>${name}</td>
         <td>${playerScore}</td>
         <td>${computerScore}</td>
       `;
@@ -125,13 +135,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   function saveDataToLocalStorage() {
-    // Ajouter le score de la partie actuelle au tableau gameData
-    gameData.push({ playerName, playerScore, computerScore });
+    // Ajouter ou mettre à jour le score pour le joueur actuel
+    gameData[playerName] = { playerScore, computerScore };
+
+    // Limiter à 20 joueurs
+    if (Object.keys(gameData).length > MAX_PLAYERS) {
+      const firstPlayer = Object.keys(gameData)[0]; // Obtenir le premier joueur (qui sera supprimé)
+      delete gameData[firstPlayer]; // Supprimer ce joueur pour ne pas dépasser 20 joueurs
+    }
 
     // Sauvegarder le tableau dans le localStorage
     localStorage.setItem("gameData", JSON.stringify(gameData));
 
-    // Mettre à jour le tableau des scores
+    // Mettre à jour l'affichage du tableau des scores
     updateScoreTable();
   }
 
