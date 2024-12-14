@@ -1,9 +1,4 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const gameDataResponse = await fetch("gameData.json");
-  const gameData = await gameDataResponse.json();
-
-  const MAX_VICTORIES = 10;
-
   const playerNameInput = document.getElementById("playerName");
   const startButton = document.getElementById("startButton");
   const resultElement = document.getElementById("result");
@@ -15,13 +10,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     paper: document.getElementById("paper"),
     scissors: document.getElementById("scissors"),
   };
-  const imagePaths = {
-    rock: "rock.jpg",
-    paper: "paper.png",
-    scissors: "scissors.png",
-  };
+  const MAX_VICTORIES = 10;
 
-  let playerName = localStorage.getItem("playerName") || null;
+  let playerName = null;
   let playerScore = 0;
   let computerScore = 0;
   let gameActive = false;
@@ -43,13 +34,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       displayResult("Please enter a valid name.");
       return;
     }
-
-    const isUniqueName = gameData.every((record) => record.playerName !== playerName);
-    if (!isUniqueName) {
-      displayResult("Name must be unique. Please enter a different name.");
-      return;
-    }
-
     startNewGame();
   });
 
@@ -57,16 +41,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     gameActive = true;
     playerScore = 0;
     computerScore = 0;
-    displayResult("Choose your weapon:");
-    enableChoiceButtons();
+    updateScoreUI();
+    displayResult("Choose your weapon!");
   }
 
-  function playRound(playerSelection, computerSelection) {
-    if (!playerName || !gameActive) {
-      displayResult("Please start a new game.");
-      return;
-    }
+  choices.forEach((choice) => {
+    choiceImages[choice].addEventListener("click", () => {
+      if (!gameActive) {
+        displayResult("Game is not active. Start a new game.");
+        return;
+      }
 
+      const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+      const result = playRound(choice, computerChoice);
+
+      displayResult(`${result} You chose ${choice}, computer chose ${computerChoice}.`);
+      updateScoreUI();
+
+      if (playerScore === MAX_VICTORIES || computerScore === MAX_VICTORIES) {
+        endGame();
+      }
+    });
+  });
+
+  function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
       return "It's a tie!";
     } else if (
@@ -82,101 +80,25 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  choices.forEach((choice) => {
-    choiceImages[choice].addEventListener("click", () => {
-      if (!gameActive) {
-        displayResult("Game is not active. Start a new game.");
-        return;
-      }
-
-      const computerChoice = choices[Math.floor(Math.random() * choices.length)];
-      const result = playRound(choice, computerChoice);
-
-      displayResult(`${result} You chose ${choice}, computer chose ${computerChoice}.`);
-      updateGameUI();
-
-      if (playerScore === MAX_VICTORIES || computerScore === MAX_VICTORIES) {
-        endGame();
-      }
-    });
-  });
-
-  function updateGameUI() {
-    const shuffledChoices = shuffleImages();
-    choices.forEach((choice, index) => {
-      choiceImages[choice].firstElementChild.src = imagePaths[shuffledChoices[index]];
-    });
+  function displayResult(message) {
+    resultElement.textContent = message;
   }
 
-  function shuffleImages() {
-    return choices.sort(() => Math.random() - 0.5);
+  function updateScoreUI() {
+    scoreTableBody.innerHTML = `
+      <tr>
+        <td>${playerName}</td>
+        <td>${playerScore}</td>
+        <td>${computerScore}</td>
+      </tr>
+    `;
   }
 
   function endGame() {
     gameActive = false;
-    saveDataToLocalStorage();
-
-    const winnerMessage =
-      playerScore === MAX_VICTORIES
-        ? "Congratulations! You are the winner!"
-        : "Computer is the winner. Better luck next time!";
-    setTimeout(() => showPopup(winnerMessage), 1000);
-    resetGame();
-  }
-
-  function showPopup(message) {
-    alert(message);
-  }
-
-  function resetGame() {
-    playerScore = 0;
-    computerScore = 0;
-    disableChoiceButtons();
-  }
-
-  function enableChoiceButtons() {
-    Object.values(choiceImages).forEach((img) => (img.style.pointerEvents = "auto"));
-  }
-
-  function disableChoiceButtons() {
-    Object.values(choiceImages).forEach((img) => (img.style.pointerEvents = "none"));
-  }
-
-  function saveDataToLocalStorage() {
-    const newRecord = { playerName, playerScore, computerScore };
-    gameData.push(newRecord);
-    localStorage.setItem("gameData", JSON.stringify(gameData));
-    updateScoreTable();
-  }
-
-  function updateScoreTable() {
-    scoreTableBody.innerHTML = ""; // Clear table before re-populating
-    gameData.forEach(({ playerName, playerScore, computerScore }) => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td>${playerName}</td>
-        <td>${playerScore}</td>
-        <td>${computerScore}</td>`;
-      scoreTableBody.appendChild(row);
-    });
-  }
-
-  function loadGameDataFromLocalStorage() {
-    const savedData = JSON.parse(localStorage.getItem("gameData")) || [];
-    savedData.forEach(({ playerName, playerScore, computerScore }) => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td>${playerName}</td>
-        <td>${playerScore}</td>
-        <td>${computerScore}</td>`;
-      scoreTableBody.appendChild(row);
-    });
-  }
-
-  loadGameDataFromLocalStorage();
-
-  // Define the displayResult function
-  function displayResult(message) {
-    resultElement.textContent = message;
+    const winnerMessage = playerScore === MAX_VICTORIES
+      ? "Congratulations! You won!"
+      : "Computer wins! Better luck next time.";
+    alert(winnerMessage);
   }
 });
