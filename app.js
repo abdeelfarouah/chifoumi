@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const gameDataResponse = await fetch('gameData.json');
+  const gameDataResponse = await fetch("gameData.json");
   const gameData = await gameDataResponse.json();
 
   const MAX_VICTORIES = 10;
@@ -26,9 +26,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   let computerScore = 0;
   let gameActive = false;
 
+  // Gestion du nom du joueur
   playerNameInput.addEventListener("input", () => {
     playerName = playerNameInput.value.trim();
-    if (playerName === "") {
+    if (!playerName) {
       startButton.disabled = true;
       nameErrorMessage.style.display = "block";
     } else {
@@ -43,26 +44,26 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    // Vérifier si le nom est unique
-    const isUniqueName = gameData.every(playerRecord => playerRecord.playerName !== playerName);
-
+    const isUniqueName = gameData.every((record) => record.playerName !== playerName);
     if (!isUniqueName) {
       displayResult("Name must be unique. Please enter a different name.");
       return;
     }
 
-    startNewGame(); // Nouvelle fonction pour démarrer le jeu
+    startNewGame();
   });
 
   function startNewGame() {
     gameActive = true;
+    playerScore = 0;
+    computerScore = 0;
     displayResult("Choose your weapon:");
     enableChoiceButtons();
   }
 
   function playRound(playerSelection, computerSelection) {
     if (!playerName || !gameActive) {
-      displayResult("Please enter a valid name and start a new game.");
+      displayResult("Please start a new game.");
       return;
     }
 
@@ -81,149 +82,97 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  function shuffleImages() {
-    const shuffledChoices = [...choices];
-    for (let i = shuffledChoices.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledChoices[i], shuffledChoices[j]] = [shuffledChoices[j], shuffledChoices[i]];
-    }
-    return shuffledChoices;
-  }
-
-  function enableChoiceButtons() {
-    choices.forEach((choice) => {
-      choiceImages[choice].style.pointerEvents = "auto";
-    });
-  }
-
-  function displayResult(message) {
-    resultElement.textContent = message;
-  }
-
-  function updateScoreTable() {
-    // Ajouter chaque enregistrement de joueur au tableau des scores
-    gameData.forEach((playerRecord) => {
-      const newRow = document.createElement("tr");
-      const nameCell = document.createElement("td");
-      const playerScoreCell = document.createElement("td");
-      const computerScoreCell = document.createElement("td");
-
-      nameCell.textContent = playerRecord.playerName;
-      playerScoreCell.textContent = playerRecord.playerScore;
-      computerScoreCell.textContent = playerRecord.computerScore;
-
-      newRow.appendChild(nameCell);
-      newRow.appendChild(playerScoreCell);
-      newRow.appendChild(computerScoreCell);
-
-      scoreTableBody.appendChild(newRow);
-    });
-  }
-
   choices.forEach((choice) => {
     choiceImages[choice].addEventListener("click", () => {
-      if (!playerName || !gameActive) {
-        displayResult("Please enter a valid name and start a new game.");
+      if (!gameActive) {
+        displayResult("Game is not active. Start a new game.");
         return;
       }
 
       const computerChoice = choices[Math.floor(Math.random() * choices.length)];
       const result = playRound(choice, computerChoice);
-      displayResult(`${result} ${playerName} chose ${choice} and the computer chose ${computerChoice}.`);
 
-      const shuffledChoices = shuffleImages();
-      choices.forEach((choice, index) => {
-        const imgPath = imagePaths[shuffledChoices[index]];
-        choiceImages[choice].firstElementChild.src = imgPath;
-      });
+      displayResult(`${result} You chose ${choice}, computer chose ${computerChoice}.`);
+      updateGameUI();
 
       if (playerScore === MAX_VICTORIES || computerScore === MAX_VICTORIES) {
-        saveDataToJson(); // Sauvegarde des données après chaque partie
-        updateScoreTable();
-
-        if (playerScore === MAX_VICTORIES) {
-          showPopup("Congratulations! You are the winner!");
-        } else {
-          showPopup("Computer is the winner. Better luck next time!");
-        }
-          // Utilisez requestAnimationFrame pour exécuter la fonction de mise à jour
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          if (playerScore === MAX_VICTORIES) {
-            showPopup("Congratulations! You are the winner!");
-          } else {
-            showPopup("Computer is the winner. Better luck next time!");
-          }
-
-        // Bloquer les choix après la fin du jeu
-        gameActive = false;
-        resetGame(); // Nouvelle fonction pour réinitialiser le jeu
-      }, 1000);
+        endGame();
+      }
     });
-    }
   });
-}); 
+
+  function updateGameUI() {
+    const shuffledChoices = shuffleImages();
+    choices.forEach((choice, index) => {
+      choiceImages[choice].firstElementChild.src = imagePaths[shuffledChoices[index]];
+    });
+  }
+
+  function shuffleImages() {
+    return choices.sort(() => Math.random() - 0.5);
+  }
+
+  function endGame() {
+    gameActive = false;
+    saveDataToLocalStorage();
+
+    const winnerMessage =
+      playerScore === MAX_VICTORIES
+        ? "Congratulations! You are the winner!"
+        : "Computer is the winner. Better luck next time!";
+    setTimeout(() => showPopup(winnerMessage), 1000);
+    resetGame();
+  }
+
   function showPopup(message) {
     alert(message);
   }
 
   function resetGame() {
-    // Réinitialiser les scores et désactiver les choix
     playerScore = 0;
     computerScore = 0;
     disableChoiceButtons();
   }
 
+  function enableChoiceButtons() {
+    Object.values(choiceImages).forEach((img) => (img.style.pointerEvents = "auto"));
+  }
+
   function disableChoiceButtons() {
-    choices.forEach((choice) => {
-      choiceImages[choice].style.pointerEvents = "none";
+    Object.values(choiceImages).forEach((img) => (img.style.pointerEvents = "none"));
+  }
+
+  function saveDataToLocalStorage() {
+    const newRecord = { playerName, playerScore, computerScore };
+    gameData.push(newRecord);
+    localStorage.setItem("gameData", JSON.stringify(gameData));
+    updateScoreTable();
+  }
+
+  function updateScoreTable() {
+    scoreTableBody.innerHTML = ""; // Clear table before re-populating
+    gameData.forEach(({ playerName, playerScore, computerScore }) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${playerName}</td>
+        <td>${playerScore}</td>
+        <td>${computerScore}</td>`;
+      scoreTableBody.appendChild(row);
     });
   }
 
-  function saveDataToJson() {
-    const dataToSave = {
-      playerName: playerName,
-      playerScore: playerScore,
-      computerScore: computerScore,
-    };
-
-    // Ajouter le nouvel enregistrement au tableau des scores
-    gameData.push(dataToSave);
-
-    const jsonData = JSON.stringify(gameData);
-    localStorage.setItem("gameData", jsonData);
-  }
-
   function loadGameDataFromLocalStorage() {
-    const savedData = localStorage.getItem("gameData");
-    if (savedData) {
-      const loadedData = JSON.parse(savedData);
-
-      // Iterer sur chaque enregistrement de joueur
-      loadedData.forEach((playerRecord) => {
-        const newRow = document.createElement("tr");
-        const nameCell = document.createElement("td");
-        const playerScoreCell = document.createElement("td");
-        const computerScoreCell = document.createElement("td");
-
-        nameCell.textContent = playerRecord.playerName;
-        playerScoreCell.textContent = playerRecord.playerScore;
-        computerScoreCell.textContent = playerRecord.computerScore;
-
-        newRow.appendChild(nameCell);
-        newRow.appendChild(playerScoreCell);
-        newRow.appendChild(computerScoreCell);
-
-        scoreTableBody.appendChild(newRow);
-      });
-
-      // Mettre à jour les scores actuels
-      playerName = loadedData[loadedData.length - 1].playerName;
-      playerScore = loadedData[loadedData.length - 1].playerScore;
-      computerScore = loadedData[loadedData.length - 1].computerScore;
-    }
+    const savedData = JSON.parse(localStorage.getItem("gameData")) || [];
+    savedData.forEach(({ playerName, playerScore, computerScore }) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${playerName}</td>
+        <td>${playerScore}</td>
+        <td>${computerScore}</td>`;
+      scoreTableBody.appendChild(row);
+    });
   }
 
-  // Appeler la fonction pour charger les données depuis le stockage local
   loadGameDataFromLocalStorage();
 });
+
